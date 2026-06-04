@@ -2,7 +2,7 @@
 # Run as Administrator: .\install.ps1
 #
 # Reads user.conf for all personal settings.
-# Safe to re-run — winget skips already installed packages,
+# Safe to re-run - winget skips already installed packages,
 # symlinks are skipped if already correctly linked.
 
 #Requires -RunAsAdministrator
@@ -11,14 +11,14 @@ $ErrorActionPreference = "Stop"
 
 $DotfilesPath = Split-Path -Parent $MyInvocation.MyCommand.Path
 
-# ── Check user.conf exists ────────────────────────────────────────────────────
+# Check user.conf exists
 if (-not (Test-Path "$DotfilesPath\user.conf")) {
     Write-Host "user.conf not found. Copy user.conf.example to user.conf and fill in your values." -ForegroundColor Red
     Write-Host "  cp $DotfilesPath\user.conf.example $DotfilesPath\user.conf" -ForegroundColor Yellow
     exit 1
 }
 
-# ── Load user.conf ────────────────────────────────────────────────────────────
+# Load user.conf
 $conf = @{}
 Get-Content "$DotfilesPath\user.conf" | Where-Object {
     $_ -notmatch '^\s*#' -and $_ -match '='
@@ -37,7 +37,7 @@ function Write-Skip($msg) { Write-Host "   SKIP $msg" -ForegroundColor DarkGray 
 function Write-Warn($msg) { Write-Host "   WARN $msg" -ForegroundColor Yellow }
 function Write-Info($msg) { Write-Host "   INFO $msg" -ForegroundColor Blue }
 
-# ── 1. Check winget ───────────────────────────────────────────────────────────
+# 1. Check winget
 Write-Step "Checking winget"
 if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
     Write-Error "winget not found. Install 'App Installer' from the Microsoft Store."
@@ -45,12 +45,15 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
 }
 Write-Ok "winget available"
 
-# ── 2. Install core packages ──────────────────────────────────────────────────
+# 2. Install core packages
 Write-Step "Installing core packages (skips already installed)"
 winget import -i "$DotfilesPath\packages.json" `
     --accept-package-agreements --accept-source-agreements
+if ($LASTEXITCODE -ne 0) {
+    Write-Warn "winget import reported an issue. Review the output above for any missing packages."
+}
 
-# ── 3. Optional: PowerToys ────────────────────────────────────────────────────
+# 3. Optional: PowerToys
 Write-Step "PowerToys"
 if ($installPT) {
     winget install --id Microsoft.PowerToys `
@@ -60,7 +63,7 @@ if ($installPT) {
     Write-Skip "PowerToys (set INSTALL_POWERTOYS=true in user.conf to enable)"
 }
 
-# ── 4. Optional: Windhawk ─────────────────────────────────────────────────────
+# 4. Optional: Windhawk
 Write-Step "Windhawk"
 if ($installWH) {
     winget install --id RamenSoftware.Windhawk `
@@ -70,11 +73,11 @@ if ($installWH) {
     Write-Skip "Windhawk (set INSTALL_WINDHAWK=true in user.conf to enable)"
 }
 
-# ── 5. Apply theme ────────────────────────────────────────────────────────────
+# 5. Apply theme
 Write-Step "Applying theme: $theme"
 & "$DotfilesPath\themes\apply-theme.ps1" -Theme $theme -DotfilesPath $DotfilesPath
 
-# ── 6. Symlink configs ────────────────────────────────────────────────────────
+# 6. Symlink configs
 Write-Step "Symlinking configs"
 
 $links = [ordered]@{
@@ -96,7 +99,7 @@ foreach ($target in $links.Keys) {
         if ($item -and $item.LinkType -eq 'SymbolicLink' -and $item.Target.TrimEnd('\') -eq $source.TrimEnd('\')) {
             Write-Skip "$target (already linked)"
         } else {
-            Write-Warn "$target already exists and is not the expected symlink — remove it manually to re-link"
+            Write-Warn "$target already exists and is not the expected symlink - remove it manually to re-link"
         }
         continue
     }
@@ -104,7 +107,7 @@ foreach ($target in $links.Keys) {
     Write-Ok "$target -> $source"
 }
 
-# ── 7. Register komorebi login task ──────────────────────────────────────────
+# 7. Register komorebi login task
 Write-Step "Registering komorebi login task"
 $action    = New-ScheduledTaskAction -Execute "komorebic" -Argument "start --whkd"
 $trigger   = New-ScheduledTaskTrigger -AtLogOn
@@ -114,14 +117,14 @@ Register-ScheduledTask -TaskName "komorebi-startup" `
     -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
 Write-Ok "komorebi-startup task registered (elevated, runs at login)"
 
-# ── 8. Windhawk manual steps ──────────────────────────────────────────────────
+# 8. Windhawk manual steps
 if ($installWH) {
-    Write-Step "Windhawk — manual steps required"
+    Write-Step "Windhawk - manual steps required"
     Write-Info "Windhawk mods must be installed from inside the app."
     Write-Info "Open Windhawk and install these mods in order:"
     Write-Host ""
     Write-Host "   1. windows-11-taskbar-styler          (hides taskbar, YASB takes over)" -ForegroundColor White
-    Write-Host "   2. windows-taskbar-auto-hide           (keeps auto-hide working with YASB)" -ForegroundColor White
+    Write-Host "   2. taskbar-auto-hide-when-maximized    (keeps auto-hide working with YASB)" -ForegroundColor White
     Write-Host "   3. windows-11-start-menu-styler        (rounds + darkens Start menu)" -ForegroundColor White
     Write-Host "   4. taskbar-clock-customization         (removes native clock)" -ForegroundColor White
     Write-Host "   5. taskbar-notification-icon-spacing   (tightens tray icons)" -ForegroundColor White

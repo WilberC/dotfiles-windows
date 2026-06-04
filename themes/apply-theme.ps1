@@ -1,5 +1,5 @@
 # themes/apply-theme.ps1
-# Called by install.ps1 — reads the active theme .conf and patches config files.
+# Called by install.ps1 - reads the active theme .conf and patches config files.
 # Safe to re-run.
 
 param(
@@ -9,7 +9,7 @@ param(
 
 $themeFile = "$DotfilesPath\themes\$Theme.conf"
 if (-not (Test-Path $themeFile)) {
-    Write-Warning "Theme file not found: $themeFile — skipping"
+    Write-Warning "Theme file not found: $themeFile - skipping"
     return
 }
 
@@ -27,7 +27,7 @@ $requiredKeys = @(
 )
 foreach ($k in $requiredKeys) {
     if (-not $t.ContainsKey($k)) {
-        Write-Warning "Theme '$Theme' is missing key '$k' — aborting theme apply"
+        Write-Warning "Theme '$Theme' is missing key '$k' - aborting theme apply"
         return
     }
 }
@@ -39,17 +39,23 @@ Get-Content "$DotfilesPath\user.conf" | Where-Object { $_ -notmatch '^\s*#' -and
     $uc[$k.Trim()] = $v.Trim().Trim('"')
 }
 
-# ── Patch wezterm/.wezterm.lua ────────────────────────────────────────────────
+# Patch wezterm/.wezterm.lua
 $weztermLua = "$DotfilesPath\wezterm\.wezterm.lua"
 $lua = Get-Content $weztermLua -Raw
 
-$lua = $lua -replace 'color_scheme\s*=\s*"[^"]*"',            "color_scheme = `"$($t['WEZTERM_COLOR_SCHEME'])`""
-$lua = $lua -replace 'font\s*=\s*wezterm\.font\("[^"]*"',      "font = wezterm.font(`"$($uc['WEZTERM_FONT'])`""
-$lua = $lua -replace 'font_size\s*=\s*[\d.]+',                 "font_size = $($uc['WEZTERM_FONT_SIZE'])"
-$lua = $lua -replace 'window_background_opacity\s*=\s*[\d.]+', "window_background_opacity = $($uc['WEZTERM_OPACITY'])"
-$lua = $lua -replace 'win32_system_backdrop\s*=\s*"[^"]*"',    "win32_system_backdrop = `"$($uc['WEZTERM_BLUR'])`""
+$weztermColorScheme = $t['WEZTERM_COLOR_SCHEME']
+$weztermFont        = $uc['WEZTERM_FONT']
+$weztermFontSize    = $uc['WEZTERM_FONT_SIZE']
+$weztermOpacity     = $uc['WEZTERM_OPACITY']
+$weztermBlur        = $uc['WEZTERM_BLUR']
 
-# Patch WSL default shell — matches both the comment (first run) and the live line (re-runs)
+$lua = $lua -replace 'color_scheme\s*=\s*"[^"]*"',            "color_scheme = `"$weztermColorScheme`""
+$lua = $lua -replace 'font\s*=\s*wezterm\.font\("[^"]*"\)',    "font = wezterm.font(`"$weztermFont`")"
+$lua = $lua -replace 'font_size\s*=\s*[\d.]+',                 "font_size = $weztermFontSize"
+$lua = $lua -replace 'window_background_opacity\s*=\s*[\d.]+', "window_background_opacity = $weztermOpacity"
+$lua = $lua -replace 'win32_system_backdrop\s*=\s*"[^"]*"',    "win32_system_backdrop = `"$weztermBlur`""
+
+# Patch WSL default shell - matches both the comment (first run) and the live line (re-runs)
 if ($uc['WEZTERM_DEFAULT_SHELL'] -eq "wsl") {
     $distro = $uc['WSL_DISTRO']
     $lua = $lua -replace '(?:-- )?config\.default_prog\s*=.*', "config.default_prog = { `"wsl.exe`", `"--distribution`", `"$distro`" }"
@@ -57,16 +63,19 @@ if ($uc['WEZTERM_DEFAULT_SHELL'] -eq "wsl") {
 
 Set-Content $weztermLua $lua -NoNewline
 
-# ── Patch yasb/styles.css ─────────────────────────────────────────────────────
+# Patch yasb/styles.css
 $cssFile = "$DotfilesPath\yasb\styles.css"
 $css = Get-Content $cssFile -Raw
 
-$css = $css -replace '(?<=\.yasb-bar\s*\{[^}]*)background-color:\s*[^;]+;', "background-color: $($t['YASB_BAR_BG']);"
-$css = $css -replace '(?<=\.yasb-bar\s*\{[^}]*)border-bottom:\s*[^;]+;',    "border-bottom: 1px solid $($t['YASB_BORDER']);"
+$yasbBarBg = $t['YASB_BAR_BG']
+$yasbBorder = $t['YASB_BORDER']
+
+$css = $css -replace '(?s)(\.yasb-bar\s*\{[^}]*?)background-color:\s*[^;]+;', "`${1}background-color: $yasbBarBg;"
+$css = $css -replace '(?s)(\.yasb-bar\s*\{[^}]*?)border-bottom:\s*[^;]+;',    "`${1}border-bottom: 1px solid $yasbBorder;"
 
 Set-Content $cssFile $css -NoNewline
 
-# ── Patch komorebi/komorebi.json border colours (raw, preserves formatting) ──
+# Patch komorebi/komorebi.json border colours (raw, preserves formatting)
 $kJsonPath = "$DotfilesPath\komorebi\komorebi.json"
 $kRaw      = Get-Content $kJsonPath -Raw
 

@@ -1,0 +1,18 @@
+theme: ''
+styleConstants:
+  - ''
+controlStyles:
+  - target: Taskbar.ExperienceTaskbarFrame#ExperienceTaskbarFrame
+    styles:
+      - Background:=<AcrylicBrush TintColor="#191724" TintOpacity="0.0" FallbackColor="#191724" />
+      - Margin=0,0,0,0
+      - CornerRadius=0
+      - MaxHeight=0
+      - Height=0
+      - Opacity=0
+  - target: Rectangle#BackgroundStroke
+    styles:
+      - Visibility=Collapsed
+themeResourceVariables:
+  - ''
+xamlDiagnosticsHandling: alert

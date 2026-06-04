@@ -4,9 +4,9 @@ local wezterm = require("wezterm")
 local config  = wezterm.config_builder()
 
 -- Appearance (patched by apply-theme.ps1)
-config.color_scheme              = "rose-pine"
-config.window_background_opacity = 0.92
-config.win32_system_backdrop     = "Acrylic"
+config.color_scheme = "rose-pine"
+config.window_background_opacity = 0.94
+config.win32_system_backdrop = "Acrylic"          # Acrylic | Tabbed | Mica | Disable"          # Acrylic | Tabbed | Mica | Disable"          # Acrylic | Tabbed | Mica | Disable"
 config.text_background_opacity   = 1.0
 config.window_decorations        = "RESIZE"
 config.window_padding            = { left = 12, right = 12, top = 10, bottom = 10 }

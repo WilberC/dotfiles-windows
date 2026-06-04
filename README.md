@@ -126,6 +126,7 @@ Right-click PowerShell → **Run as Administrator**, then:
 
 ```powershell
 cd $env:USERPROFILE\dotfiles-windows
+Get-ChildItem -Recurse -Filter *.ps1 | Unblock-File
 .\install.ps1
 ```
 
@@ -140,12 +141,12 @@ The script will:
 Open Windhawk after `install.ps1` finishes and install these mods in order:
 
 1. `windows-11-taskbar-styler`         — hides native taskbar (YASB takes over)
-2. `windows-taskbar-auto-hide`         — keeps auto-hide working alongside YASB
+2. `taskbar-auto-hide-when-maximized`  — keeps auto-hide working alongside YASB
 3. `windows-11-start-menu-styler`      — rounds and darkens the Start menu
 4. `taskbar-clock-customization`       — removes native clock (YASB shows it)
 5. `taskbar-notification-icon-spacing` — tightens tray icon spacing
 
-For each mod, copy the settings from the matching file in `windhawk/*.json`.
+For each mod, copy the settings from the matching file in `windhawk/*.yaml`.
 Full instructions in [`windhawk/README.md`](windhawk/README.md).
 
 ### 5. Set Windows accent color
@@ -278,10 +279,11 @@ dotfiles-windows/
 │   └── .wezterm.lua           ← acrylic blur, font, tab bar, pane keybinds
 ├── windhawk/
 │   ├── README.md              ← manual install instructions + mod order
-│   ├── taskbar-styler.json    ← hides native taskbar
-│   ├── start-menu-styler.json ← rounds + darkens Start menu
-│   ├── taskbar-clock.json     ← removes native clock
-│   └── notification-icons.json
+│   ├── taskbar-styler.yaml    ← hides native taskbar
+│   ├── taskbar-auto-hide.yaml ← auto-hides native taskbar when maximized
+│   ├── start-menu-styler.yaml ← rounds + darkens Start menu
+│   ├── taskbar-clock.yaml     ← removes native clock
+│   └── notification-icon.yaml
 └── flow-launcher/             ← drop your Flow Launcher backup here (gitignored)
 ```
 

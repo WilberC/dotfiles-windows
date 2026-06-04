@@ -1,0 +1,21 @@
+theme: ''
+disableNewStartMenuLayout: ''
+styleConstants:
+  - ''
+controlStyles:
+  - target: Border#AcrylicBorder
+    styles:
+      - Background:=<AcrylicBrush TintColor="#191724" TintOpacity="0.95" FallbackColor="#191724" />
+      - CornerRadius=14
+      - BorderThickness=1
+      - BorderBrush:=<SolidColorBrush Color="#31748f" Opacity="0.35" />
+  - target: Windows.UI.Xaml.Controls.Grid#TopLevelSuggestionsListHeader
+    styles:
+      - Visibility=Collapsed
+themeResourceVariables:
+  - ''
+webContentStyles:
+  - target: ''
+    styles:
+      - ''
+webContentCustomJs: ''

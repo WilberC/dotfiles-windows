@@ -1,0 +1,13 @@
+2026-06-04 03:23:51,530 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-04 03:23:51,530 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-04 03:23:51,531 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-04 03:23:51,670 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarAlignment: 'center' - Use 'align' instead.
+2026-06-04 03:23:51,670 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarBlurEffect: 'acrylic' - No longer supported and can be removed from the config.
+2026-06-04 03:23:51,671 [ERROR] [MainThread] [root/config.py:99]: The config file 'C:\Users\wilbe\.config\yasb\config.yaml' contains validation errors. Please fix:
+bars:
+  main-bar:
+    blur_effect:
+      dark:
+      - Extra inputs are not permitted
+
+2026-06-04 03:23:51,671 [ERROR] [MainThread] [root/config.py:158]: User config file could not be loaded. Exiting Application.
