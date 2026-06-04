@@ -56,6 +56,10 @@ Download → extract → right-click the `.ttf` files → **Install for all user
 Open the Microsoft Store → search **App Installer** → update it.
 Winget ships with Windows 11 but may be outdated on a fresh install.
 
+[Link](https://apps.microsoft.com/detail/9NBLGGH4NNS1?hl=es-mx&gl=PE&ocid=pdpshare)
+
+<img width="1087" height="89" alt="image" src="https://github.com/user-attachments/assets/ac5fa4ee-d45d-434c-9a77-022acfa4b03d" />
+
 **3. Enable Developer Mode (for symlinks without Admin every time)**
 
 *Settings → System → For developers → Developer Mode → On*
@@ -63,6 +67,9 @@ Winget ships with Windows 11 but may be outdated on a fresh install.
 This lets PowerShell create symlinks. The bootstrap still needs to run as
 Administrator once, but subsequent `New-Item -SymbolicLink` calls will work
 from a normal shell.
+
+<img width="880" height="720" alt="image" src="https://github.com/user-attachments/assets/dc11888d-407a-4962-bed3-7d1dffb6febf" />
+
 
 **4. Set execution policy**
 
