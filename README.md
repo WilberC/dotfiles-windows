@@ -133,6 +133,7 @@ Get-ChildItem -Recurse -Filter *.ps1 | Unblock-File
 
 The script will:
 - Install all packages via winget
+- Pull the latest Zed config from `WilberC/dotfiles`
 - Apply your chosen theme to all config files
 - Symlink configs from the repo into the locations each app expects
 - Register a login task that starts Komorebi + whkd automatically
@@ -199,7 +200,7 @@ repo the source of truth — editing a file here changes it for the running app.
 | `yasb/config.yaml` | Yes — `watch_config: true` |
 | `yasb/styles.css` | Yes — `watch_stylesheet: true` |
 | `wezterm/.wezterm.lua` | Yes — WezTerm watches it |
-| `zed/settings.json` | Yes — Zed watches it |
+| `zed/*.json` | Yes — pulled from `WilberC/dotfiles`, then watched by Zed |
 | `komorebi/komorebi.json` | No — run `komorebic reload-configuration` |
 | `komorebi/whkdrc` | Yes — whkd restarts on change |
 
@@ -211,6 +212,15 @@ notepad user.conf
 
 # Re-run the bootstrap — only the theme step does real work
 .\install.ps1
+```
+
+### Updating Zed config
+
+Zed config is canonical in `WilberC/dotfiles` and is pulled during
+`install.ps1`. To refresh only Zed without running the full bootstrap:
+
+```powershell
+.\update-zed.ps1
 ```
 
 ### After editing, commit to the repo
@@ -266,6 +276,7 @@ dotfiles-windows/
 ├── user.conf                  ← gitignored — your personal settings
 ├── packages.json              ← winget manifest (core packages)
 ├── install.ps1                ← bootstrap: install + theme + symlink + login task
+├── update-zed.ps1             ← pulls latest Zed config from WilberC/dotfiles
 ├── README.md
 ├── themes/
 │   ├── rose-pine.conf         ← full Rose Pine palette + per-app values
@@ -280,9 +291,9 @@ dotfiles-windows/
 ├── wezterm/
 │   └── .wezterm.lua           ← acrylic blur, font, tab bar, pane keybinds
 ├── zed/
-│   ├── keymap.json             ← custom keybindings
-│   ├── settings.json           ← Vim mode, autosave, font, theme
-│   └── tasks.json              ← global Zed tasks
+│   ├── keymap.json             ← pulled from WilberC/dotfiles
+│   ├── settings.json           ← pulled from WilberC/dotfiles
+│   └── tasks.json              ← pulled from WilberC/dotfiles
 ├── windhawk/
 │   ├── README.md              ← manual install instructions + mod order
 │   ├── taskbar-styler.yaml    ← hides native taskbar

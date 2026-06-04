@@ -25,7 +25,7 @@ Get-Content $themeFile | Where-Object { $_ -notmatch '^\s*#' -and $_ -match '=' 
 
 # Validate required theme keys
 $requiredKeys = @(
-    'WEZTERM_COLOR_SCHEME', 'ZED_THEME', 'YASB_BAR_BG', 'YASB_BORDER',
+    'WEZTERM_COLOR_SCHEME', 'YASB_BAR_BG', 'YASB_BORDER',
     'KOMOREBI_BORDER_SINGLE', 'KOMOREBI_BORDER_STACK', 'KOMOREBI_BORDER_MONOCLE'
 )
 foreach ($k in $requiredKeys) {
@@ -68,21 +68,6 @@ if ($uc['WEZTERM_DEFAULT_SHELL'] -eq "wsl") {
 }
 
 Set-Content $weztermLua $lua -NoNewline
-
-# Patch zed/settings.json
-$zedSettings = "$DotfilesPath\zed\settings.json"
-if (Test-Path $zedSettings) {
-    $zed = Get-Content $zedSettings -Raw
-
-    $zedTheme = $t['ZED_THEME']
-    $zedFont  = $uc['WEZTERM_FONT']
-
-    $zed = $zed -replace '("dark"\s*:\s*")[^"]*(")', "`${1}$zedTheme`${2}"
-    $zed = $zed -replace '("buffer_font_family"\s*:\s*")[^"]*(")', "`${1}$zedFont`${2}"
-    $zed = $zed -replace '("terminal"\s*:\s*\{[^}]*?"font_family"\s*:\s*")[^"]*(")', "`${1}$zedFont`${2}"
-
-    Set-Content $zedSettings $zed -NoNewline
-}
 
 # Patch yasb/styles.css
 $cssFile = "$DotfilesPath\yasb\styles.css"

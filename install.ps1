@@ -76,11 +76,15 @@ if ($installWH) {
     Write-Skip "Windhawk (set INSTALL_WINDHAWK=true in user.conf to enable)"
 }
 
-# 5. Apply theme
+# 5. Pull Zed config
+Write-Step "Pulling Zed config"
+& "$DotfilesPath\update-zed.ps1" -DotfilesPath $DotfilesPath
+
+# 6. Apply theme
 Write-Step "Applying theme: $theme"
 & "$DotfilesPath\themes\apply-theme.ps1" -Theme $theme -DotfilesPath $DotfilesPath
 
-# 6. Symlink configs
+# 7. Symlink configs
 Write-Step "Symlinking configs"
 
 $links = [ordered]@{
@@ -111,7 +115,7 @@ foreach ($target in $links.Keys) {
     Write-Ok "$target -> $source"
 }
 
-# 7. Register komorebi login task
+# 8. Register komorebi login task
 Write-Step "Registering komorebi login task"
 $action    = New-ScheduledTaskAction -Execute "komorebic" -Argument "start --whkd"
 $trigger   = New-ScheduledTaskTrigger -AtLogOn
@@ -121,7 +125,7 @@ Register-ScheduledTask -TaskName "komorebi-startup" `
     -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
 Write-Ok "komorebi-startup task registered (elevated, runs at login)"
 
-# 8. Windhawk manual steps
+# 9. Windhawk manual steps
 if ($installWH) {
     Write-Step "Windhawk - manual steps required"
     Write-Info "Windhawk mods must be installed from inside the app."
