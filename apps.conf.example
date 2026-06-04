@@ -1,0 +1,6 @@
+# dotfiles-windows/apps.conf
+# Copy this file to apps.conf and set each app to "true" or "false".
+# Run manually with: .\install-apps.ps1
+
+INSTALL_ZEN="true"
+INSTALL_OBSIDIAN="true"

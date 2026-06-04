@@ -20,6 +20,20 @@ Get-ChildItem -Recurse -Filter *.ps1 | Unblock-File
 
 Run the bootstrap from an Administrator PowerShell window the first time.
 
+## Optional Apps
+
+Extra personal apps are installed separately from the automatic bootstrap. Copy
+the example config, choose the apps you want, then run the manual app installer:
+
+```powershell
+cp apps.conf.example apps.conf
+notepad apps.conf
+.\install-apps.ps1
+```
+
+This keeps `install.ps1` focused on the dotfiles setup while `install-apps.ps1`
+only installs apps enabled in `apps.conf`.
+
 ## Docs
 
 | Start here | What it covers |
