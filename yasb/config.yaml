@@ -15,7 +15,7 @@ bars:
       acrylic: true
       dark: true
     window_flags:
-      always_on_top: false
+      always_on_top: true
       windows_app_bar: true
     dimensions:
       width: "100%"
@@ -35,9 +35,9 @@ widgets:
     type: "yasb.komorebi.KomorebiWorkspacesWidget"
     options:
       label_offline: "Komorebi offline"
-      label_workspace_btn: "\udb81\udc37"
-      label_active_workspace_btn: "\udb81\udc38"
-      label_workspace_populated_btn: "\udb81\udc37"
+      label_workspace_btn: "\u25cb"
+      label_active_workspace_btn: "\u25cf"
+      label_workspace_populated_btn: "\u25c9"
 
   komorebi-active-layout:
     type: "yasb.komorebi.KomorebiActiveLayoutWidget"

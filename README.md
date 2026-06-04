@@ -77,7 +77,16 @@ cp user.conf.example user.conf
 
 ## Windhawk (manual step)
 
-Windhawk mods can't be scripted — install them from inside the app after running `install.ps1`. See [`windhawk/README.md`](windhawk/README.md) for the full list and settings.
+Windhawk mods can't be scripted — install them from inside the app after running `install.ps1`.
+Open Windhawk and install in this order:
+
+1. `windows-11-taskbar-styler`         — hides native taskbar, YASB takes over
+2. `windows-taskbar-auto-hide`         — keeps auto-hide working with YASB
+3. `windows-11-start-menu-styler`      — rounds and darkens Start menu
+4. `taskbar-clock-customization`       — removes native clock (YASB has it)
+5. `taskbar-notification-icon-spacing` — tightens tray icon spacing
+
+Settings for each mod are in `windhawk/*.json`. See [`windhawk/README.md`](windhawk/README.md) for full instructions.
 
 ## Updating the package list
 

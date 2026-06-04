@@ -3,8 +3,9 @@
 #
 # Reads user.conf for all personal settings.
 # Safe to re-run — winget skips already installed packages,
-# symlinks are skipped if the target already exists.
+# symlinks are skipped if already correctly linked.
 
+#Requires -RunAsAdministrator
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
@@ -27,8 +28,8 @@ Get-Content "$DotfilesPath\user.conf" | Where-Object {
 }
 
 $theme     = $conf["THEME"]
-$wslDistro = $conf["WSL_DISTRO"]
-$installWH = $conf["INSTALL_WINDHAWK"] -eq "true"
+$installPT = $conf["INSTALL_POWERTOYS"] -eq "true"
+$installWH = $conf["INSTALL_WINDHAWK"]  -eq "true"
 
 function Write-Step($msg) { Write-Host "`n>> $msg" -ForegroundColor Cyan }
 function Write-Ok($msg)   { Write-Host "   OK   $msg" -ForegroundColor Green }
@@ -44,25 +45,39 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
 }
 Write-Ok "winget available"
 
-# ── 2. Install packages ───────────────────────────────────────────────────────
-Write-Step "Installing packages (skips already installed)"
+# ── 2. Install core packages ──────────────────────────────────────────────────
+Write-Step "Installing core packages (skips already installed)"
 winget import -i "$DotfilesPath\packages.json" `
     --accept-package-agreements --accept-source-agreements
 
-if (-not $installWH) {
-    Write-Skip "Windhawk not requested (set INSTALL_WINDHAWK=true in user.conf to enable)"
+# ── 3. Optional: PowerToys ────────────────────────────────────────────────────
+Write-Step "PowerToys"
+if ($installPT) {
+    winget install --id Microsoft.PowerToys `
+        --accept-package-agreements --accept-source-agreements
+    Write-Ok "PowerToys installed"
 } else {
-    Write-Ok "Windhawk included in packages.json — already handled above"
+    Write-Skip "PowerToys (set INSTALL_POWERTOYS=true in user.conf to enable)"
 }
 
-# ── 3. Apply theme ────────────────────────────────────────────────────────────
+# ── 4. Optional: Windhawk ─────────────────────────────────────────────────────
+Write-Step "Windhawk"
+if ($installWH) {
+    winget install --id RamenSoftware.Windhawk `
+        --accept-package-agreements --accept-source-agreements
+    Write-Ok "Windhawk installed"
+} else {
+    Write-Skip "Windhawk (set INSTALL_WINDHAWK=true in user.conf to enable)"
+}
+
+# ── 5. Apply theme ────────────────────────────────────────────────────────────
 Write-Step "Applying theme: $theme"
 & "$DotfilesPath\themes\apply-theme.ps1" -Theme $theme -DotfilesPath $DotfilesPath
 
-# ── 4. Symlink configs ────────────────────────────────────────────────────────
+# ── 6. Symlink configs ────────────────────────────────────────────────────────
 Write-Step "Symlinking configs"
 
-$links = @{
+$links = [ordered]@{
     "$HOME\.config\komorebi" = "$DotfilesPath\komorebi"
     "$HOME\.config\yasb"     = "$DotfilesPath\yasb"
     "$HOME\.config\whkdrc"   = "$DotfilesPath\komorebi\whkdrc"
@@ -70,34 +85,46 @@ $links = @{
 }
 
 foreach ($target in $links.Keys) {
-    $source = $links[$target]
-    if (Test-Path $target) {
-        Write-Skip "$target (already exists)"
+    $source    = $links[$target]
+    $parentDir = Split-Path $target -Parent
+    if (-not (Test-Path $parentDir)) {
+        New-Item -ItemType Directory -Path $parentDir -Force | Out-Null
+    }
+
+    if (Test-Path $target -PathType Any) {
+        $item = Get-Item $target -Force -ErrorAction SilentlyContinue
+        if ($item -and $item.LinkType -eq 'SymbolicLink' -and $item.Target -eq $source) {
+            Write-Skip "$target (already linked)"
+        } else {
+            Write-Warn "$target already exists and is not the expected symlink — remove it manually to re-link"
+        }
         continue
     }
     New-Item -ItemType SymbolicLink -Path $target -Target $source -Force | Out-Null
-    Write-Ok "$target"
+    Write-Ok "$target -> $source"
 }
 
-# ── 5. Register komorebi login task ──────────────────────────────────────────
+# ── 7. Register komorebi login task ──────────────────────────────────────────
 Write-Step "Registering komorebi login task"
-$action   = New-ScheduledTaskAction -Execute "komorebic" -Argument "start --whkd"
-$trigger  = New-ScheduledTaskTrigger -AtLogOn
-$settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit 0
+$action    = New-ScheduledTaskAction -Execute "komorebic" -Argument "start --whkd"
+$trigger   = New-ScheduledTaskTrigger -AtLogOn
+$settings  = New-ScheduledTaskSettingsSet -ExecutionTimeLimit 0
+$principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -RunLevel Highest
 Register-ScheduledTask -TaskName "komorebi-startup" `
-    -Action $action -Trigger $trigger -Settings $settings -Force | Out-Null
-Write-Ok "komorebi-startup task registered"
+    -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
+Write-Ok "komorebi-startup task registered (elevated, runs at login)"
 
-# ── 6. Windhawk manual steps ──────────────────────────────────────────────────
+# ── 8. Windhawk manual steps ──────────────────────────────────────────────────
 if ($installWH) {
     Write-Step "Windhawk — manual steps required"
     Write-Info "Windhawk mods must be installed from inside the app."
     Write-Info "Open Windhawk and install these mods in order:"
     Write-Host ""
-    Write-Host "   1. windows-11-taskbar-styler    (hides taskbar, YASB takes over)" -ForegroundColor White
-    Write-Host "   2. windows-11-start-menu-styler (rounds + darkens Start menu)" -ForegroundColor White
-    Write-Host "   3. taskbar-clock-customization  (removes native clock)" -ForegroundColor White
-    Write-Host "   4. taskbar-notification-icon-spacing (tightens tray icons)" -ForegroundColor White
+    Write-Host "   1. windows-11-taskbar-styler          (hides taskbar, YASB takes over)" -ForegroundColor White
+    Write-Host "   2. windows-taskbar-auto-hide           (keeps auto-hide working with YASB)" -ForegroundColor White
+    Write-Host "   3. windows-11-start-menu-styler        (rounds + darkens Start menu)" -ForegroundColor White
+    Write-Host "   4. taskbar-clock-customization         (removes native clock)" -ForegroundColor White
+    Write-Host "   5. taskbar-notification-icon-spacing   (tightens tray icons)" -ForegroundColor White
     Write-Host ""
     Write-Info "Settings for each mod are in: $DotfilesPath\windhawk\"
     Write-Info "See windhawk\README.md for full instructions."

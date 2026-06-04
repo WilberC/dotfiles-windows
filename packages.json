@@ -14,9 +14,7 @@
         { "PackageIdentifier": "LGUG2Z.whkd" },
         { "PackageIdentifier": "da-rth.yasb" },
         { "PackageIdentifier": "wez.wezterm" },
-        { "PackageIdentifier": "Flow-Launcher.Flow-Launcher" },
-        { "PackageIdentifier": "Microsoft.PowerToys" },
-        { "PackageIdentifier": "RamenSoftware.Windhawk" }
+        { "PackageIdentifier": "Flow-Launcher.Flow-Launcher" }
       ]
     }
   ]
