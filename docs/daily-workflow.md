@@ -1,0 +1,60 @@
+# Daily Workflow
+
+## Editing Configs
+
+All configs live in this repo. The symlinks created by `install.ps1` make the
+repo the source of truth, so editing a file here changes it for the running app.
+
+| Config | Auto-reloads? |
+|--------|---------------|
+| `yasb/config.yaml` | Yes, via `watch_config: true` |
+| `yasb/styles.css` | Yes, via `watch_stylesheet: true` |
+| `wezterm/.wezterm.lua` | Yes, WezTerm watches it |
+| `zed/*.json` | Yes, pulled from `WilberC/dotfiles`, then watched by Zed |
+| `komorebi/komorebi.json` | No, run `komorebic reload-configuration` |
+| `komorebi/whkdrc` | Yes, whkd restarts on change |
+
+## Switching Themes
+
+```powershell
+# Edit user.conf and change THEME="catppuccin-mocha"
+notepad user.conf
+
+# Re-run the bootstrap; only the theme step does real work
+.\install.ps1
+```
+
+## Updating Zed Config
+
+Zed config is canonical in `WilberC/dotfiles` and is pulled during
+`install.ps1`. To refresh only Zed without running the full bootstrap:
+
+```powershell
+.\update-zed.ps1
+```
+
+## Committing Changes
+
+```powershell
+cd $env:USERPROFILE\dotfiles-windows
+git add .
+git commit -m "tweak komorebi gaps"
+git push
+```
+
+## Updating The Package List
+
+```powershell
+winget export -o packages.json
+git add packages.json
+git commit -m "update packages"
+```
+
+## Backing Up Flow Launcher Settings
+
+In Flow Launcher:
+
+**Settings -> General -> Backup / Restore -> Backup**
+
+The backup lands in `%APPDATA%\FlowLauncher\Backups`. Copy it into
+`flow-launcher/` in this repo and commit it.
