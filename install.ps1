@@ -23,8 +23,11 @@ $conf = @{}
 Get-Content "$DotfilesPath\user.conf" | Where-Object {
     $_ -notmatch '^\s*#' -and $_ -match '='
 } | ForEach-Object {
-    $key, $val = $_ -split '=', 2
-    $conf[$key.Trim()] = $val.Trim().Trim('"')
+    if ($_ -match '^\s*([^#=\s]+)\s*=\s*"(.*?)"') {
+        $conf[$matches[1]] = $matches[2]
+    } elseif ($_ -match '^\s*([^#=\s]+)\s*=\s*([^#]*)') {
+        $conf[$matches[1]] = $matches[2].Trim()
+    }
 }
 
 $theme     = $conf["THEME"]
@@ -85,6 +88,7 @@ $links = [ordered]@{
     "$HOME\.config\yasb"     = "$DotfilesPath\yasb"
     "$HOME\.config\whkdrc"   = "$DotfilesPath\komorebi\whkdrc"
     "$HOME\.wezterm.lua"     = "$DotfilesPath\wezterm\.wezterm.lua"
+    "$env:APPDATA\Zed"       = "$DotfilesPath\zed"
 }
 
 foreach ($target in $links.Keys) {

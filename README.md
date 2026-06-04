@@ -19,6 +19,7 @@ decorative.
 | [whkd](https://github.com/LGUG2Z/whkd) | Hotkey daemon | Pairs with Komorebi, Hyprland-style `alt+hjkl` bindings |
 | [YASB](https://github.com/da-rth/yasb) | Status bar | Waybar equivalent — replaces the native taskbar entirely |
 | [WezTerm](https://wezfurlong.org/wezterm/) | Terminal | Best acrylic/blur support on Windows 11, Lua config |
+| [Zed](https://zed.dev/) | Code editor | Fast editor with Vim mode, autosave, and themed settings |
 | [Flow Launcher](https://www.flowlauncher.com/) | App launcher | Rofi/Wofi equivalent for Windows |
 | [PowerToys](https://github.com/microsoft/PowerToys) | System utilities | Color picker, PowerRename, window snapping hints, and more |
 | [Windhawk](https://windhawk.net/) | Windows UI patcher | **Required** — hides the native taskbar so YASB owns the screen |
@@ -198,6 +199,7 @@ repo the source of truth — editing a file here changes it for the running app.
 | `yasb/config.yaml` | Yes — `watch_config: true` |
 | `yasb/styles.css` | Yes — `watch_stylesheet: true` |
 | `wezterm/.wezterm.lua` | Yes — WezTerm watches it |
+| `zed/settings.json` | Yes — Zed watches it |
 | `komorebi/komorebi.json` | No — run `komorebic reload-configuration` |
 | `komorebi/whkdrc` | Yes — whkd restarts on change |
 
@@ -277,6 +279,10 @@ dotfiles-windows/
 │   └── styles.css             ← bar theme (patched by apply-theme.ps1)
 ├── wezterm/
 │   └── .wezterm.lua           ← acrylic blur, font, tab bar, pane keybinds
+├── zed/
+│   ├── keymap.json             ← custom keybindings
+│   ├── settings.json           ← Vim mode, autosave, font, theme
+│   └── tasks.json              ← global Zed tasks
 ├── windhawk/
 │   ├── README.md              ← manual install instructions + mod order
 │   ├── taskbar-styler.yaml    ← hides native taskbar
@@ -294,6 +300,7 @@ $HOME\.config\komorebi  →  dotfiles-windows\komorebi\
 $HOME\.config\yasb      →  dotfiles-windows\yasb\
 $HOME\.config\whkdrc    →  dotfiles-windows\komorebi\whkdrc
 $HOME\.wezterm.lua      →  dotfiles-windows\wezterm\.wezterm.lua
+$env:APPDATA\Zed        →  dotfiles-windows\zed\
 ```
 
 ---

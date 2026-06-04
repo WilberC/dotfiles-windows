@@ -1,0 +1,54 @@
+// dotfiles-windows/zed/settings.json
+// Values marked "(patched)" are overwritten by themes/apply-theme.ps1.
+{
+  "theme": {
+    "mode": "dark",
+    "dark": "Rosé Pine",
+    "light": "One Light"
+  },
+  "base_keymap": "VSCode",
+  "vim_mode": true,
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_size": 14,
+  "ui_font_size": 16,
+  "tab_size": 2,
+  "soft_wrap": "editor_width",
+  "autosave": "on_focus_change",
+  "format_on_save": "on",
+  "restore_on_startup": "last_session",
+  "show_whitespaces": "selection",
+  "terminal": {
+    "shell": "system",
+    "font_family": "JetBrainsMono Nerd Font",
+    "font_size": 13,
+    "working_directory": "current_project_directory"
+  },
+  "project_panel": {
+    "dock": "left",
+    "button": true,
+    "indent_size": 16,
+    "auto_fold_dirs": true
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": true
+  },
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+  "languages": {
+    "JSON": {
+      "tab_size": 2,
+      "formatter": "language_server"
+    },
+    "PowerShell": {
+      "tab_size": 4
+    },
+    "YAML": {
+      "tab_size": 2
+    }
+  }
+}

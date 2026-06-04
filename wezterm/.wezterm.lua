@@ -5,14 +5,14 @@ local config  = wezterm.config_builder()
 
 -- Appearance (patched by apply-theme.ps1)
 config.color_scheme = "rose-pine"
-config.window_background_opacity = 0.94
-config.win32_system_backdrop = "Acrylic"          # Acrylic | Tabbed | Mica | Disable"          # Acrylic | Tabbed | Mica | Disable"          # Acrylic | Tabbed | Mica | Disable"
+config.window_background_opacity = 0.92
+config.win32_system_backdrop = "Acrylic"
 config.text_background_opacity   = 1.0
 config.window_decorations        = "RESIZE"
 config.window_padding            = { left = 12, right = 12, top = 10, bottom = 10 }
 
 -- Font (patched by apply-theme.ps1)
-config.font      = wezterm.font("JetBrains Mono", { weight = "Regular" })
+config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 13.0
 
 -- Tab bar
@@ -48,6 +48,6 @@ config.keys = {
 }
 
 -- Default shell (patched by apply-theme.ps1 when WEZTERM_DEFAULT_SHELL=wsl)
--- config.default_prog = { "wsl.exe", "--distribution", "Ubuntu" }
+config.default_prog = { "wsl.exe", "--distribution", "Ubuntu" }
 
 return config
