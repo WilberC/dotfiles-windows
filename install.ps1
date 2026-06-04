@@ -93,7 +93,7 @@ foreach ($target in $links.Keys) {
 
     if (Test-Path $target -PathType Any) {
         $item = Get-Item $target -Force -ErrorAction SilentlyContinue
-        if ($item -and $item.LinkType -eq 'SymbolicLink' -and $item.Target -eq $source) {
+        if ($item -and $item.LinkType -eq 'SymbolicLink' -and $item.Target.TrimEnd('\') -eq $source.TrimEnd('\')) {
             Write-Skip "$target (already linked)"
         } else {
             Write-Warn "$target already exists and is not the expected symlink — remove it manually to re-link"
