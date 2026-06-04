@@ -11,7 +11,8 @@ THEME="rose-pine"
 WSL_DISTRO="Ubuntu"
 
 # ── WezTerm ──────────────────────────────────────────────────────────────────
-WEZTERM_FONT="JetBrains Mono"
+# Font must be a Nerd Font installed on the system — see README prerequisites
+WEZTERM_FONT="JetBrainsMono Nerd Font"
 WEZTERM_FONT_SIZE="13.0"
 WEZTERM_OPACITY="0.92"
 WEZTERM_BLUR="Acrylic"          # Acrylic | Tabbed | Mica | Disable
@@ -30,5 +31,8 @@ YASB_HEIGHT="40"
 YASB_BLUR="true"
 
 # ── Optional tools ───────────────────────────────────────────────────────────
+# Both default to true — this is an opinionated full-stack setup.
+# Windhawk is required for the full look (hides native taskbar so YASB owns it).
+# Set to false only if you know you don't want them.
 INSTALL_POWERTOYS="true"
 INSTALL_WINDHAWK="true"
