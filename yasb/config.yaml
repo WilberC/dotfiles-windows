@@ -9,11 +9,11 @@ bars:
     class_name: "yasb-bar"
     alignment:
       position: "top"
-      center: false
+      align: "left"
     blur_effect:
       enabled: true
       acrylic: true
-      dark: true
+      dark_mode: true
     window_flags:
       always_on_top: true
       windows_app_bar: true
@@ -32,15 +32,15 @@ bars:
 
 widgets:
   komorebi-workspaces:
-    type: "yasb.komorebi.KomorebiWorkspacesWidget"
+    type: "komorebi.workspaces.WorkspaceWidget"
     options:
       label_offline: "Komorebi offline"
-      label_workspace_btn: "\u25cb"
-      label_active_workspace_btn: "\u25cf"
-      label_workspace_populated_btn: "\u25c9"
+      label_workspace_btn: "{index}:{name}"
+      label_workspace_active_btn: "[{index}:{name}]"
+      label_workspace_populated_btn: "{index}:{name}"
 
   komorebi-active-layout:
-    type: "yasb.komorebi.KomorebiActiveLayoutWidget"
+    type: "komorebi.active_layout.ActiveLayoutWidget"
     options:
       hide_if_offline: true
       label: "{icon}"
@@ -53,7 +53,7 @@ widgets:
         horizontal_stack: "H-STACK"
         ultrawide_vertical_stack: "UW-STACK"
         monocle: "MONO"
-        maximised: "MAX"
+        maximized: "MAX"
         floating: "FLOAT"
 
   clock:
