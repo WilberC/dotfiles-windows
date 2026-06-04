@@ -15,5 +15,6 @@ Komorebi window management is driven by `komorebi/whkdrc`.
 | `Alt + F` | Toggle maximize |
 | `Alt + Shift + F` | Toggle float |
 | `Alt + Left/Right` | Cycle stack |
+| `Alt + /` | Open the active whkd shortcut file |
 | `Alt + Shift + R` | Retile |
 | `Alt + Shift + Q` | Close window |

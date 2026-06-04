@@ -4,8 +4,8 @@ Windows ricing setup: Hyprland-style tiling, status bar, terminal, launcher,
 editor settings, and Windows UI patches for Windows 11.
 
 This repo is the source of truth for the configs. `install.ps1` installs the
-core tools, applies the selected theme, creates symlinks, and registers the
-Komorebi startup task.
+core tools plus optional tools enabled in `user.conf`, applies the selected
+theme, creates symlinks, and registers the Komorebi startup task.
 
 ## Quick Start
 
@@ -33,8 +33,9 @@ Run the bootstrap from an Administrator PowerShell window the first time.
 
 ## Important
 
-Windhawk is required for the full look. Without it, the native Windows taskbar
-and YASB both appear on screen. Follow the Windhawk section in
+Windhawk is optional, but required for the full look. Without it, the native
+Windows taskbar and YASB both appear on screen. If `INSTALL_WINDHAWK=true`,
+follow the Windhawk section in
 [Installation](docs/installation.md#4-install-windhawk-mods) and the detailed
 mod notes in [windhawk/README.md](windhawk/README.md).
 

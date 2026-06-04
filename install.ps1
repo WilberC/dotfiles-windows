@@ -32,6 +32,7 @@ Get-Content "$DotfilesPath\user.conf" | Where-Object {
 
 $theme     = $conf["THEME"]
 $installPT = $conf["INSTALL_POWERTOYS"] -eq "true"
+$installFlowLauncher = $conf["INSTALL_FLOW_LAUNCHER"] -eq "true"
 $installWH = $conf["INSTALL_WINDHAWK"]  -eq "true"
 
 function Write-Step($msg) { Write-Host "`n>> $msg" -ForegroundColor Cyan }
@@ -39,6 +40,11 @@ function Write-Ok($msg)   { Write-Host "   OK   $msg" -ForegroundColor Green }
 function Write-Skip($msg) { Write-Host "   SKIP $msg" -ForegroundColor DarkGray }
 function Write-Warn($msg) { Write-Host "   WARN $msg" -ForegroundColor Yellow }
 function Write-Info($msg) { Write-Host "   INFO $msg" -ForegroundColor Blue }
+function Install-WingetPackage($id, $name) {
+    winget install --id $id `
+        --accept-package-agreements --accept-source-agreements
+    Write-Ok "$name installed"
+}
 
 # 1. Check winget
 Write-Step "Checking winget"
@@ -59,32 +65,36 @@ if ($LASTEXITCODE -ne 0) {
 # 3. Optional: PowerToys
 Write-Step "PowerToys"
 if ($installPT) {
-    winget install --id Microsoft.PowerToys `
-        --accept-package-agreements --accept-source-agreements
-    Write-Ok "PowerToys installed"
+    Install-WingetPackage "Microsoft.PowerToys" "PowerToys"
 } else {
     Write-Skip "PowerToys (set INSTALL_POWERTOYS=true in user.conf to enable)"
 }
 
-# 4. Optional: Windhawk
+# 4. Optional: Flow Launcher
+Write-Step "Flow Launcher"
+if ($installFlowLauncher) {
+    Install-WingetPackage "Flow-Launcher.Flow-Launcher" "Flow Launcher"
+} else {
+    Write-Skip "Flow Launcher (set INSTALL_FLOW_LAUNCHER=true in user.conf to enable)"
+}
+
+# 5. Optional: Windhawk
 Write-Step "Windhawk"
 if ($installWH) {
-    winget install --id RamenSoftware.Windhawk `
-        --accept-package-agreements --accept-source-agreements
-    Write-Ok "Windhawk installed"
+    Install-WingetPackage "RamenSoftware.Windhawk" "Windhawk"
 } else {
     Write-Skip "Windhawk (set INSTALL_WINDHAWK=true in user.conf to enable)"
 }
 
-# 5. Pull Zed config
+# 6. Pull Zed config
 Write-Step "Pulling Zed config"
 & "$DotfilesPath\update-zed.ps1" -DotfilesPath $DotfilesPath
 
-# 6. Apply theme
+# 7. Apply theme
 Write-Step "Applying theme: $theme"
 & "$DotfilesPath\themes\apply-theme.ps1" -Theme $theme -DotfilesPath $DotfilesPath
 
-# 7. Symlink configs
+# 8. Symlink configs
 Write-Step "Symlinking configs"
 
 $links = [ordered]@{
@@ -115,7 +125,7 @@ foreach ($target in $links.Keys) {
     Write-Ok "$target -> $source"
 }
 
-# 8. Register komorebi login task
+# 9. Register komorebi login task
 Write-Step "Registering komorebi login task"
 $action    = New-ScheduledTaskAction -Execute "komorebic" -Argument "start --whkd"
 $trigger   = New-ScheduledTaskTrigger -AtLogOn
@@ -125,7 +135,7 @@ Register-ScheduledTask -TaskName "komorebi-startup" `
     -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
 Write-Ok "komorebi-startup task registered (elevated, runs at login)"
 
-# 9. Windhawk manual steps
+# 10. Windhawk manual steps
 if ($installWH) {
     Write-Step "Windhawk - manual steps required"
     Write-Info "Windhawk mods must be installed from inside the app."

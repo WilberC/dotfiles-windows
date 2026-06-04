@@ -14,8 +14,7 @@
         { "PackageIdentifier": "LGUG2Z.whkd" },
         { "PackageIdentifier": "AmN.yasb" },
         { "PackageIdentifier": "wez.wezterm" },
-        { "PackageIdentifier": "ZedIndustries.Zed" },
-        { "PackageIdentifier": "Flow-Launcher.Flow-Launcher" }
+        { "PackageIdentifier": "ZedIndustries.Zed" }
       ]
     }
   ]

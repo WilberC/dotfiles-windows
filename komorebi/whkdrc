@@ -46,5 +46,6 @@ alt + left              : komorebic cycle-stack previous
 alt + right             : komorebic cycle-stack next
 
 # Misc
+alt + /                 : notepad "$env:USERPROFILE\.config\whkdrc"
 alt + shift + r         : komorebic retile
 alt + shift + q         : komorebic close

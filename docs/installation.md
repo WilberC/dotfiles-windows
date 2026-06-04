@@ -74,6 +74,7 @@ Minimum edits required:
 - `WSL_DISTRO`: run `wsl --list` to find your distro name
 - `WEZTERM_FONT`: must match the Nerd Font you installed
 - `THEME`: `rose-pine` or `catppuccin-mocha`
+- Optional installers: set `INSTALL_FLOW_LAUNCHER` or `INSTALL_WINDHAWK` to `false` to skip those apps
 
 Everything else has sensible defaults.
 
@@ -89,7 +90,8 @@ Get-ChildItem -Recurse -Filter *.ps1 | Unblock-File
 
 The script will:
 
-- Install all packages via winget
+- Install core packages via winget
+- Install optional packages enabled in `user.conf`
 - Pull the latest Zed config from `WilberC/dotfiles`
 - Apply your chosen theme to all config files
 - Symlink configs from the repo into the locations each app expects
@@ -97,7 +99,8 @@ The script will:
 
 ### 4. Install Windhawk mods
 
-Open Windhawk after `install.ps1` finishes and install these mods in order:
+If `INSTALL_WINDHAWK=true`, open Windhawk after `install.ps1` finishes and
+install these mods in order:
 
 | Mod | Purpose |
 |-----|---------|
@@ -144,5 +147,5 @@ notepad user.conf
 # 3. Bootstrap from an Administrator PowerShell
 .\install.ps1
 
-# 4. Install Windhawk mods manually
+# 4. If INSTALL_WINDHAWK=true, install Windhawk mods manually
 ```

@@ -3,12 +3,13 @@
 This is an opinionated Windows 11 rice inspired by Hyprland setups.
 
 It combines a tiling window manager, custom status bar, acrylic terminal, app
-launcher, editor config, and Windows shell patches. Configs live in this repo;
-the apps read them through symlinks created by `install.ps1`.
+launcher, editor config, and optional Windows shell patches. Configs live in
+this repo; the apps read them through symlinks created by `install.ps1`.
 
 ## Stack
 
-Every tool here is load-bearing. Nothing is decorative.
+The core setup is Komorebi, whkd, YASB, WezTerm, and Zed. Optional tools can
+be enabled or skipped in `user.conf`.
 
 | Tool | Role | Why this one |
 |------|------|--------------|
@@ -17,15 +18,15 @@ Every tool here is load-bearing. Nothing is decorative.
 | [YASB](https://github.com/da-rth/yasb) | Status bar | Waybar equivalent; replaces the native taskbar |
 | [WezTerm](https://wezfurlong.org/wezterm/) | Terminal | Strong acrylic and blur support on Windows 11, Lua config |
 | [Zed](https://zed.dev/) | Code editor | Fast editor with Vim mode, autosave, and themed settings |
-| [Flow Launcher](https://www.flowlauncher.com/) | App launcher | Rofi/Wofi equivalent for Windows |
+| [Flow Launcher](https://www.flowlauncher.com/) | Optional app launcher | Rofi/Wofi equivalent for Windows |
 | [PowerToys](https://github.com/microsoft/PowerToys) | System utilities | Color picker, PowerRename, window snapping hints, and more |
-| [Windhawk](https://windhawk.net/) | Windows UI patcher | Required to hide the native taskbar so YASB owns the screen |
+| [Windhawk](https://windhawk.net/) | Optional Windows UI patcher | Hides the native taskbar so YASB owns the screen |
 
-## Why Windhawk Is Required
+## Why Windhawk Completes The Look
 
 Without Windhawk you get two bars on screen: the native Windows taskbar and
 YASB. Windhawk patches the taskbar to zero height and opacity, making YASB the
-only visible bar. The setup looks broken without it.
+only visible bar.
 
 ## Themes
 
