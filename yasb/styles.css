@@ -1,0 +1,27 @@
+/* dotfiles-windows/yasb/styles.css
+   Base values = Rose Pine — apply-theme.ps1 patches bg and border on install */
+
+* {
+  font-family: "JetBrainsMono Nerd Font", "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: #e0def4;
+}
+
+.yasb-bar {
+  background-color: rgba(25, 23, 36, 0.88);
+  border-bottom: 1px solid rgba(49, 116, 143, 0.20);
+}
+
+.komorebi-workspaces .ws-btn           { color: #6e6a86; padding: 0 6px; font-size: 16px; }
+.komorebi-workspaces .ws-btn.populated { color: #908caa; }
+.komorebi-workspaces .ws-btn.active    { color: #9ccfd8; }
+
+.clock-widget { padding: 0 8px; }
+
+.cpu-widget,
+.memory-widget,
+.volume-widget,
+.battery-widget,
+.network-widget { padding: 0 6px; color: #908caa; }
+
+.power-menu-widget { padding: 0 8px; color: #eb6f92; }

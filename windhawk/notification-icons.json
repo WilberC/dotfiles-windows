@@ -1,0 +1,7 @@
+{
+  "_mod": "taskbar-notification-icon-spacing",
+  "_description": "Reduces spacing between tray icons for a cleaner look.",
+
+  "iconSpacing": 4,
+  "iconSize": 16
+}

@@ -1,0 +1,11 @@
+{
+  "_mod": "taskbar-clock-customization",
+  "_description": "Hides the native taskbar clock since YASB renders it. Set these in the mod settings.",
+
+  "ShowSeconds": false,
+  "TimeFormat": "",
+  "DateFormat": "",
+  "TooltipFormat": "",
+  "Width": 0,
+  "Height": 0
+}

@@ -1,0 +1,113 @@
+# dotfiles-windows/yasb/config.yaml
+watch_stylesheet: true
+watch_config: true
+
+bars:
+  main-bar:
+    enabled: true
+    screens: ['*']
+    class_name: "yasb-bar"
+    alignment:
+      position: "top"
+      center: false
+    blur_effect:
+      enabled: true
+      acrylic: true
+      dark: true
+    window_flags:
+      always_on_top: false
+      windows_app_bar: true
+    dimensions:
+      width: "100%"
+      height: 40
+    padding:
+      top: 4
+      left: 12
+      bottom: 4
+      right: 12
+    widgets:
+      left:   ["komorebi-workspaces", "komorebi-active-layout"]
+      center: ["clock"]
+      right:  ["volume", "battery", "cpu", "memory", "network", "power-menu"]
+
+widgets:
+  komorebi-workspaces:
+    type: "yasb.komorebi.KomorebiWorkspacesWidget"
+    options:
+      label_offline: "Komorebi offline"
+      label_workspace_btn: "\udb81\udc37"
+      label_active_workspace_btn: "\udb81\udc38"
+      label_workspace_populated_btn: "\udb81\udc37"
+
+  komorebi-active-layout:
+    type: "yasb.komorebi.KomorebiActiveLayoutWidget"
+    options:
+      hide_if_offline: true
+      label: "{icon}"
+      layout_icons:
+        bsp: "BSP"
+        columns: "COLS"
+        rows: "ROWS"
+        grid: "GRID"
+        vertical_stack: "V-STACK"
+        horizontal_stack: "H-STACK"
+        ultrawide_vertical_stack: "UW-STACK"
+        monocle: "MONO"
+        maximised: "MAX"
+        floating: "FLOAT"
+
+  clock:
+    type: "yasb.clock.ClockWidget"
+    options:
+      label: "{%a %d %b  %H:%M}"
+      label_alt: "{%A %d %B %Y  %H:%M:%S}"
+      timezones: []
+
+  cpu:
+    type: "yasb.cpu.CpuWidget"
+    options:
+      label: " {info[histograms][cpu_percent]}"
+      label_alt: " {info[freq][current]:.1f} GHz"
+      update_interval: 2000
+      histogram_num_columns: 8
+
+  memory:
+    type: "yasb.memory.MemoryWidget"
+    options:
+      label: " {virtual_mem_free}"
+      label_alt: " {virtual_mem_percent}%"
+      update_interval: 5000
+
+  volume:
+    type: "yasb.volume.VolumeWidget"
+    options:
+      label: "{icon}"
+      label_alt: "{icon} {level}%"
+
+  battery:
+    type: "yasb.battery.BatteryWidget"
+    options:
+      label: "{icon}"
+      label_alt: "{icon} {percent}%"
+      update_interval: 30000
+
+  network:
+    type: "yasb.network.NetworkWidget"
+    options:
+      label: "{icon}"
+      label_alt: "{wifi_name}"
+
+  power-menu:
+    type: "yasb.power_menu.PowerMenuWidget"
+    options:
+      label: ""
+      uptime: true
+      blur: true
+      animation_duration: 300
+      buttons:
+        shutdown: ["", "Shutdown"]
+        restart:  ["", "Restart"]
+        sleep:    ["", "Sleep"]
+        lock:     ["", "Lock"]
+        logout:   ["", "Logout"]
+        cancel:   ["", "Cancel"]

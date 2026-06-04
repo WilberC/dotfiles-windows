@@ -1,0 +1,52 @@
+{
+  "_mod": "windows-11-taskbar-styler",
+  "_description": "Makes the taskbar a floating pill — or hide it entirely. Strategy here: shrink to 0px and rely on YASB. To use floating pill mode instead, see the commented section below.",
+
+  "taskbarLocation": "top",
+  "taskbarLocationSecondary": "top",
+
+  "styleConstants": {},
+
+  "theme": "",
+
+  "controlStyles": [
+    {
+      "target": "Taskbar.ExperienceTaskbarFrame#ExperienceTaskbarFrame",
+      "styles": [
+        "Background:=<AcrylicBrush TintColor=\"{ThemeResource SystemChromeAltHighColor}\" TintOpacity=\"0.6\" FallbackColor=\"{ThemeResource SystemChromeLowColor}\" />",
+        "Margin=0,4,0,4",
+        "CornerRadius=10",
+        "MaxHeight=0",
+        "Opacity=0"
+      ]
+    },
+    {
+      "target": "Rectangle#BackgroundStroke",
+      "styles": [
+        "Visibility=Collapsed"
+      ]
+    }
+  ],
+
+  "_floating_pill_alternative": {
+    "_note": "Replace the controlStyles above with these if you want a floating pill instead of hidden taskbar",
+    "controlStyles": [
+      {
+        "target": "Taskbar.ExperienceTaskbarFrame#ExperienceTaskbarFrame",
+        "styles": [
+          "Background:=<AcrylicBrush TintColor=\"#191724\" TintOpacity=\"0.85\" FallbackColor=\"#191724\" />",
+          "Margin=300,6,300,6",
+          "CornerRadius=12",
+          "BorderThickness=1",
+          "BorderBrush:=<SolidColorBrush Color=\"#31748f\" Opacity=\"0.3\" />"
+        ]
+      },
+      {
+        "target": "Rectangle#BackgroundStroke",
+        "styles": [
+          "Visibility=Collapsed"
+        ]
+      }
+    ]
+  }
+}

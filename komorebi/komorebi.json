@@ -1,0 +1,35 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
+  "default_layout": "BSP",
+  "window_container_behaviour": "Create",
+  "cross_monitor_move_behaviour": "Insert",
+  "focus_follows_mouse": "NoFocusChange",
+  "mouse_follows_focus": false,
+  "border": true,
+  "border_width": 2,
+  "border_offset": -1,
+  "border_colours": {
+    "single":  { "light": "#31748f", "dark": "#31748f" },
+    "stack":   { "light": "#9ccfd8", "dark": "#9ccfd8" },
+    "monocle": { "light": "#eb6f92", "dark": "#eb6f92" }
+  },
+  "transparency": false,
+  "transparency_alpha": 200,
+  "work_area_offset": {
+    "top": 40,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+  },
+  "monitors": [
+    {
+      "workspaces": [
+        { "name": "1", "layout": "BSP" },
+        { "name": "2", "layout": "BSP" },
+        { "name": "3", "layout": "BSP" },
+        { "name": "4", "layout": "BSP" },
+        { "name": "5", "layout": "Monocle" }
+      ]
+    }
+  ]
+}

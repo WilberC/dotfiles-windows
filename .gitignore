@@ -1,0 +1,10 @@
+# Personal config — copy user.conf.example to user.conf and fill in your values
+user.conf
+
+# Flow Launcher backup may contain personal data
+flow-launcher/*.json
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,34 @@
+# dotfiles-windows/user.conf
+# Copy this file to user.conf and edit to match your setup.
+# user.conf is gitignored — this example file is what gets committed.
+
+# ── Theme ────────────────────────────────────────────────────────────────────
+# Options: "rose-pine" | "catppuccin-mocha"
+THEME="rose-pine"
+
+# ── Paths ────────────────────────────────────────────────────────────────────
+# Your WSL2 distro name (run: wsl --list to find it)
+WSL_DISTRO="Ubuntu"
+
+# ── WezTerm ──────────────────────────────────────────────────────────────────
+WEZTERM_FONT="JetBrains Mono"
+WEZTERM_FONT_SIZE="13.0"
+WEZTERM_OPACITY="0.92"
+WEZTERM_BLUR="Acrylic"          # Acrylic | Tabbed | Mica | Disable
+WEZTERM_DEFAULT_SHELL="wsl"     # wsl | pwsh | cmd
+
+# ── Komorebi ─────────────────────────────────────────────────────────────────
+KOMOREBI_LAYOUT="BSP"
+KOMOREBI_BORDER="true"
+KOMOREBI_BORDER_WIDTH="2"
+KOMOREBI_GAP="8"
+KOMOREBI_WORKSPACES="5"
+
+# ── YASB ─────────────────────────────────────────────────────────────────────
+YASB_POSITION="top"
+YASB_HEIGHT="40"
+YASB_BLUR="true"
+
+# ── Optional tools ───────────────────────────────────────────────────────────
+INSTALL_POWERTOYS="true"
+INSTALL_WINDHAWK="true"
