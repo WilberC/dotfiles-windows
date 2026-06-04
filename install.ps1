@@ -31,7 +31,6 @@ Get-Content "$DotfilesPath\user.conf" | Where-Object {
 }
 
 $theme     = $conf["THEME"]
-$installPT = $conf["INSTALL_POWERTOYS"] -eq "true"
 $installFlowLauncher = $conf["INSTALL_FLOW_LAUNCHER"] -eq "true"
 $installWH = $conf["INSTALL_WINDHAWK"]  -eq "true"
 
@@ -62,15 +61,7 @@ if ($LASTEXITCODE -ne 0) {
     Write-Warn "winget import reported an issue. Review the output above for any missing packages."
 }
 
-# 3. Optional: PowerToys
-Write-Step "PowerToys"
-if ($installPT) {
-    Install-WingetPackage "Microsoft.PowerToys" "PowerToys"
-} else {
-    Write-Skip "PowerToys (set INSTALL_POWERTOYS=true in user.conf to enable)"
-}
-
-# 4. Optional: Flow Launcher
+# 3. Optional: Flow Launcher
 Write-Step "Flow Launcher"
 if ($installFlowLauncher) {
     Install-WingetPackage "Flow-Launcher.Flow-Launcher" "Flow Launcher"
@@ -78,7 +69,7 @@ if ($installFlowLauncher) {
     Write-Skip "Flow Launcher (set INSTALL_FLOW_LAUNCHER=true in user.conf to enable)"
 }
 
-# 5. Optional: Windhawk
+# 4. Optional: Windhawk
 Write-Step "Windhawk"
 if ($installWH) {
     Install-WingetPackage "RamenSoftware.Windhawk" "Windhawk"
@@ -86,15 +77,15 @@ if ($installWH) {
     Write-Skip "Windhawk (set INSTALL_WINDHAWK=true in user.conf to enable)"
 }
 
-# 6. Pull Zed config
+# 5. Pull Zed config
 Write-Step "Pulling Zed config"
 & "$DotfilesPath\update-zed.ps1" -DotfilesPath $DotfilesPath
 
-# 7. Apply theme
+# 6. Apply theme
 Write-Step "Applying theme: $theme"
 & "$DotfilesPath\themes\apply-theme.ps1" -Theme $theme -DotfilesPath $DotfilesPath
 
-# 8. Symlink configs
+# 7. Symlink configs
 Write-Step "Symlinking configs"
 
 $links = [ordered]@{
@@ -125,7 +116,7 @@ foreach ($target in $links.Keys) {
     Write-Ok "$target -> $source"
 }
 
-# 9. Register komorebi login task
+# 8. Register komorebi login task
 Write-Step "Registering komorebi login task"
 $action    = New-ScheduledTaskAction -Execute "komorebic" -Argument "start --whkd"
 $trigger   = New-ScheduledTaskTrigger -AtLogOn
@@ -135,7 +126,7 @@ Register-ScheduledTask -TaskName "komorebi-startup" `
     -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Force | Out-Null
 Write-Ok "komorebi-startup task registered (elevated, runs at login)"
 
-# 10. Windhawk manual steps
+# 9. Windhawk manual steps
 if ($installWH) {
     Write-Step "Windhawk - manual steps required"
     Write-Info "Windhawk mods must be installed from inside the app."

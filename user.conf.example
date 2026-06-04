@@ -32,6 +32,5 @@ YASB_BLUR="true"
 
 # ── Optional tools ───────────────────────────────────────────────────────────
 # Set any optional installer to "false" to skip it when running install.ps1.
-INSTALL_POWERTOYS="true"        # Optional Windows utilities: fancy zones, awake, etc.
 INSTALL_FLOW_LAUNCHER="true"    # App launcher/search palette; false if you use Start, PowerToys Run, etc.
 INSTALL_WINDHAWK="true"         # Windows UI patches for the full YASB/taskbar look; false keeps native UI.

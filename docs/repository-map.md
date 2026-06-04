@@ -51,7 +51,7 @@ dotfiles-windows/
 | `user.conf.example` | Committed reference config; copy to `user.conf` locally |
 | `user.conf` | Gitignored personal settings |
 | `packages.json` | winget manifest for always-installed core packages |
-| `install.ps1` | Bootstrap: install core and optional packages, apply theme, symlink configs, register login task |
+| `install.ps1` | Bootstrap: install core packages plus optional packages, apply theme, symlink configs, register login task |
 | `update-zed.ps1` | Pulls latest Zed config from `WilberC/dotfiles` |
 | `themes/*.conf` | Theme palettes and per-app values |
 | `themes/apply-theme.ps1` | Patches WezTerm, YASB, and Komorebi from the active theme |
