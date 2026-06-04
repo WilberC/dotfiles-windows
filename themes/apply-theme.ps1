@@ -16,8 +16,11 @@ if (-not (Test-Path $themeFile)) {
 # Parse theme .conf
 $t = @{}
 Get-Content $themeFile | Where-Object { $_ -notmatch '^\s*#' -and $_ -match '=' } | ForEach-Object {
-    $k, $v = $_ -split '=', 2
-    $t[$k.Trim()] = $v.Trim().Trim('"')
+    if ($_ -match '^\s*([^#=\s]+)\s*=\s*"(.*?)"') {
+        $t[$matches[1]] = $matches[2]
+    } elseif ($_ -match '^\s*([^#=\s]+)\s*=\s*([^#]*)') {
+        $t[$matches[1]] = $matches[2].Trim()
+    }
 }
 
 # Validate required theme keys
@@ -35,8 +38,11 @@ foreach ($k in $requiredKeys) {
 # Parse user.conf
 $uc = @{}
 Get-Content "$DotfilesPath\user.conf" | Where-Object { $_ -notmatch '^\s*#' -and $_ -match '=' } | ForEach-Object {
-    $k, $v = $_ -split '=', 2
-    $uc[$k.Trim()] = $v.Trim().Trim('"')
+    if ($_ -match '^\s*([^#=\s]+)\s*=\s*"(.*?)"') {
+        $uc[$matches[1]] = $matches[2]
+    } elseif ($_ -match '^\s*([^#=\s]+)\s*=\s*([^#]*)') {
+        $uc[$matches[1]] = $matches[2].Trim()
+    }
 }
 
 # Patch wezterm/.wezterm.lua
@@ -50,7 +56,7 @@ $weztermOpacity     = $uc['WEZTERM_OPACITY']
 $weztermBlur        = $uc['WEZTERM_BLUR']
 
 $lua = $lua -replace 'color_scheme\s*=\s*"[^"]*"',            "color_scheme = `"$weztermColorScheme`""
-$lua = $lua -replace 'font\s*=\s*wezterm\.font\("[^"]*"\)',    "font = wezterm.font(`"$weztermFont`")"
+$lua = $lua -replace 'font\s*=\s*wezterm\.font\("[^"]*"(?:,\s*\{[^}]*\})?\)', "font = wezterm.font(`"$weztermFont`")"
 $lua = $lua -replace 'font_size\s*=\s*[\d.]+',                 "font_size = $weztermFontSize"
 $lua = $lua -replace 'window_background_opacity\s*=\s*[\d.]+', "window_background_opacity = $weztermOpacity"
 $lua = $lua -replace 'win32_system_backdrop\s*=\s*"[^"]*"',    "win32_system_backdrop = `"$weztermBlur`""

@@ -15,6 +15,16 @@
   },
   "transparency": false,
   "transparency_alpha": 200,
+  "float_rule_placement": "None",
+  "floating_applications": [
+    { "kind": "Exe", "id": "steam.exe", "matching_strategy": "Equals" },
+    { "kind": "Exe", "id": "RiotClientServices.exe", "matching_strategy": "Equals" },
+    { "kind": "Exe", "id": "Riot Client.exe", "matching_strategy": "Equals" },
+    { "kind": "Exe", "id": "LeagueClient.exe", "matching_strategy": "Equals" },
+    { "kind": "Exe", "id": "LeagueClientUx.exe", "matching_strategy": "Equals" },
+    { "kind": "Exe", "id": "League of Legends.exe", "matching_strategy": "Equals" },
+    { "kind": "Title", "id": "League of Legends", "matching_strategy": "Contains" }
+  ],
   "work_area_offset": {
     "top": 40,
     "bottom": 0,
@@ -24,11 +34,32 @@
   "monitors": [
     {
       "workspaces": [
-        { "name": "1", "layout": "BSP" },
-        { "name": "2", "layout": "BSP" },
-        { "name": "3", "layout": "BSP" },
-        { "name": "4", "layout": "BSP" },
-        { "name": "5", "layout": "Monocle" }
+        { "name": "dev", "layout": "BSP" },
+        { "name": "web", "layout": "Columns" },
+        { "name": "term", "layout": "BSP" },
+        { "name": "scratch", "layout": "BSP" },
+        {
+          "name": "game",
+          "layout": "Monocle",
+          "initial_workspace_rules": [
+            { "kind": "Exe", "id": "steam.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "RiotClientServices.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "Riot Client.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "LeagueClient.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "LeagueClientUx.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "League of Legends.exe", "matching_strategy": "Equals" },
+            { "kind": "Title", "id": "League of Legends", "matching_strategy": "Contains" }
+          ]
+        }
+      ]
+    },
+    {
+      "workspaces": [
+        { "name": "side", "layout": "Monocle" },
+        { "name": "chat", "layout": "Monocle" },
+        { "name": "media", "layout": "Monocle" },
+        { "name": "docs", "layout": "Monocle" },
+        { "name": "float", "layout": "Monocle", "float_override": true }
       ]
     }
   ]
