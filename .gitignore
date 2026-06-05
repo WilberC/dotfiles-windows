@@ -5,6 +5,9 @@ apps.conf
 # Flow Launcher backup may contain personal data
 flow-launcher/*.json
 
+# YASB runtime logs
+yasb/yasb.log
+
 # OS
 Thumbs.db
 desktop.ini
