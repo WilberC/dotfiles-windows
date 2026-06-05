@@ -59,3 +59,9 @@ mod notes in [windhawk/README.md](windhawk/README.md).
 - `catppuccin-mocha`: cool dark, popular alternative
 
 Switch themes by editing `THEME` in `user.conf`, then re-run `.\install.ps1`.
+
+After editing Komorebi config, reload only what needs manual refresh:
+
+```powershell
+.\reload-configs.ps1
+```

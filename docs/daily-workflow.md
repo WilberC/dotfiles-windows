@@ -11,8 +11,22 @@ repo the source of truth, so editing a file here changes it for the running app.
 | `yasb/styles.css` | Yes, via `watch_stylesheet: true` |
 | `wezterm/.wezterm.lua` | Yes, WezTerm watches it |
 | `zed/*.json` | Yes, pulled from `WilberC/dotfiles`, then watched by Zed |
-| `komorebi/komorebi.json` | No, run `komorebic reload-configuration` |
+| `komorebi/komorebi.json` | No, run `.\reload-configs.ps1` |
 | `komorebi/whkdrc` | Yes, whkd restarts on change |
+
+To reload only the configs that need manual help:
+
+```powershell
+.\reload-configs.ps1
+```
+
+If a watched app needs a hard refresh anyway:
+
+```powershell
+.\reload-configs.ps1 -Whkd
+.\reload-configs.ps1 -Yasb
+.\reload-configs.ps1 -All
+```
 
 ## Switching Themes
 
