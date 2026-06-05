@@ -18,7 +18,7 @@ QToolTip { margin:6px; color: #cdd6f4;font-size:12px; background-color: #12151b;
 .yasb-bar {
 	padding: 0 8px;
 	margin: 0; 
-    background-color: var(--background-color);
+    background-color: rgba(25, 23, 36, 0.88);
 }
 .widget {
     padding: 0 8px;

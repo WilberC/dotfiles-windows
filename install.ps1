@@ -79,6 +79,50 @@ function Install-WingetPackage($id, $name) {
         --accept-package-agreements --accept-source-agreements
     Write-Ok "$name installed"
 }
+function Quote-CommandPath($path) {
+    return '"' + $path + '"'
+}
+function Set-RunStartupApp($name, $exePath, $arguments = "") {
+    if (-not (Test-Path $exePath -PathType Leaf)) {
+        throw "Startup executable not found: $exePath"
+    }
+
+    $runKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
+    if (-not (Test-Path $runKey)) {
+        New-Item -Path $runKey -Force | Out-Null
+    }
+
+    $command = Quote-CommandPath $exePath
+    if (-not [string]::IsNullOrWhiteSpace($arguments)) {
+        $command = "$command $arguments"
+    }
+
+    Set-ItemProperty -Path $runKey -Name $name -Value $command
+}
+function Resolve-FlowLauncherPath {
+    $cmd = Get-Command "Flow.Launcher" -ErrorAction SilentlyContinue
+    if ($cmd) {
+        return $cmd.Source
+    }
+
+    $shimPath = "$env:LOCALAPPDATA\FlowLauncher\Flow.Launcher.exe"
+    if (Test-Path $shimPath -PathType Leaf) {
+        return $shimPath
+    }
+
+    $appDir = Get-ChildItem "$env:LOCALAPPDATA\FlowLauncher" -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -like "app-*" } |
+        Sort-Object Name -Descending |
+        Select-Object -First 1
+    if ($appDir) {
+        $appPath = Join-Path $appDir.FullName "Flow.Launcher.exe"
+        if (Test-Path $appPath -PathType Leaf) {
+            return $appPath
+        }
+    }
+
+    throw "Flow Launcher executable not found"
+}
 
 # 1. Check winget
 Write-Step "Checking winget"
@@ -198,7 +242,31 @@ Register-ScheduledTask -TaskName "komorebi-startup" `
 Write-Ok "komorebi-startup task registered (elevated, runs at login)"
 Add-Summary "Komorebi login task" "OK" "Registered elevated startup task"
 
-# 9. Windhawk manual steps
+# 9. Enable YASB autostart
+Write-Step "Enabling YASB autostart"
+$yasbcPath = (Get-Command yasbc -ErrorAction Stop).Source
+& $yasbcPath enable-autostart
+if ($LASTEXITCODE -ne 0) {
+    Write-Warn "YASB autostart command reported an issue. Try manually: yasbc enable-autostart"
+    Add-Summary "YASB autostart" "WARN" "yasbc enable-autostart reported an issue"
+} else {
+    Write-Ok "YASB autostart enabled"
+    Add-Summary "YASB autostart" "OK" "Enabled with yasbc"
+}
+
+# 10. Enable Flow Launcher autostart
+Write-Step "Flow Launcher autostart"
+if ($installFlowLauncher) {
+    $flowLauncherPath = Resolve-FlowLauncherPath
+    Set-RunStartupApp "Flow Launcher" $flowLauncherPath
+    Write-Ok "Flow Launcher autostart enabled -> $flowLauncherPath"
+    Add-Summary "Flow Launcher autostart" "OK" "Registered in HKCU Run"
+} else {
+    Write-Skip "Flow Launcher autostart (INSTALL_FLOW_LAUNCHER=false)"
+    Add-Summary "Flow Launcher autostart" "SKIP" "Disabled in user.conf"
+}
+
+# 11. Windhawk manual steps
 if ($installWH) {
     Write-Step "Windhawk - manual steps required"
     Write-Info "Windhawk mods must be installed from inside the app."
@@ -217,5 +285,5 @@ if ($installWH) {
 
 Write-Summary
 
-Write-Host "`nDone. Log out and back in, or run: komorebic start --whkd" -ForegroundColor Green
+Write-Host "`nDone. Log out and back in, or run: komorebic start --whkd; yasbc start" -ForegroundColor Green
 Write-Host "Theme: $theme  |  Edit user.conf to change settings and re-run." -ForegroundColor DarkGray
