@@ -6,12 +6,12 @@
 	"mouse_follows_focus": false,
 	"border": true,
 	"border_width": 2,
-	"border_offset": -1,
-	"border_colours": {
-		"single": "#31748f",
-		"stack": "#9ccfd8",
-		"monocle": "#eb6f92"
-	},
+  "border_offset": -1,
+  "border_colours": {
+    "single": "#ff0000",
+    "stack": "#ff0000",
+    "monocle": "#ff0000"
+  },
 	"transparency": false,
 	"transparency_alpha": 200,
 	"float_rule_placement": "None",

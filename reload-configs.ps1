@@ -29,14 +29,21 @@ function Invoke-KomorebiReload {
         return $false
     }
 
-    & komorebic reload-configuration
+    $komorebiConfig = Join-Path $HOME ".config\komorebi\komorebi.json"
+
+    if (-not (Test-Path -LiteralPath $komorebiConfig)) {
+        Write-Bad "komorebi.json was not found at $komorebiConfig"
+        return $false
+    }
+
+    & komorebic replace-configuration $komorebiConfig
 
     if ($LASTEXITCODE -eq 0) {
-        Write-Ok "komorebi/komorebi.json reloaded"
+        Write-Ok "$komorebiConfig reloaded"
         return $true
     }
 
-    Write-Bad "komorebic reload-configuration failed with exit code $LASTEXITCODE"
+    Write-Bad "komorebic replace-configuration failed with exit code $LASTEXITCODE"
     return $false
 }
 
