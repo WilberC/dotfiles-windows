@@ -94,3 +94,138 @@ ModuleNotFoundError: No module named 'core.widgets.yasb.network'
 2026-06-05 01:54:15,796 [INFO] [Dummy-7] [root/event_listener.py:54]: Created named pipe yasb-5df9a686-60ab-11f1-b05d-841b772f1719
 2026-06-05 01:54:15,799 [INFO] [MainThread] [root/update_service.py:434]: Background update checker started
 2026-06-05 01:54:15,863 [INFO] [Dummy-7] [root/event_listener.py:147]: Komorebi connected to named pipe: yasb-5df9a686-60ab-11f1-b05d-841b772f1719
+2026-06-05 02:39:39,680 [INFO] [CLIPipeServer] [cli_server/cli_server.py:257]: CLI server received command: stop
+2026-06-05 02:39:39,680 [INFO] [CLIPipeServer] [root/controller.py:43]: Exiting Application from CLI...
+2026-06-05 02:39:39,780 [INFO] [CLIPipeServer] [cli_server/cli_server.py:114]: Log pipe server stopped
+2026-06-05 02:39:40,186 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping KomorebiEventListener...
+2026-06-05 02:39:40,796 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-05 02:39:40,797 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-05 02:39:40,797 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-05 02:39:40,828 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarAlignment: 'center' - Use 'align' instead.
+2026-06-05 02:39:40,828 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarBlurEffect: 'acrylic' - No longer supported and can be removed from the config.
+2026-06-05 02:39:40,872 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] KomorebiWorkspacesConfig: 'container_padding' - Use CSS padding instead.
+2026-06-05 02:39:40,876 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] ActiveLayoutConfig: 'container_padding' - Use CSS padding instead.
+2026-06-05 02:39:40,876 [WARNING] [MainThread] [deprecation/deprecation.py:137]: [DEPRECATED] ActiveLayoutIconsConfig: 'maximised' renamed to 'maximized' - Use 'maximized' instead.
+2026-06-05 02:39:41,065 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] ApplicationsWidgetConfig: 'container_padding' - Use CSS padding instead.
+2026-06-05 02:39:41,340 [INFO] [MainThread] [root/service.py:52]: AudioOutputService starting...
+2026-06-05 02:39:41,707 [INFO] [MainThread] [root/bar_manager.py:102]: Starting SystemEventListener...
+2026-06-05 02:39:41,707 [INFO] [MainThread] [root/bar_manager.py:102]: Starting KomorebiEventListener...
+2026-06-05 02:39:41,708 [INFO] [MainThread] [root/watcher.py:65]: Watching directory: c:\users\wilbe\.config\yasb
+2026-06-05 02:39:41,708 [INFO] [MainThread] [root/watcher.py:104]: Created file watcher
+2026-06-05 02:39:41,768 [INFO] [Dummy-7] [root/event_listener.py:54]: Created named pipe yasb-b6c59c28-60b1-11f1-9d8e-841b772f1719
+2026-06-05 02:39:41,773 [INFO] [MainThread] [root/update_service.py:434]: Background update checker started
+2026-06-05 02:39:41,843 [INFO] [Dummy-7] [root/event_listener.py:147]: Komorebi connected to named pipe: yasb-b6c59c28-60b1-11f1-9d8e-841b772f1719
+2026-06-05 02:39:42,113 [INFO] [MainThread] [root/api.py:69]: Fetching new weather data at 2026-06-05 02:39:42.113372
+2026-06-05 02:39:56,309 [INFO] [CLIPipeServer] [cli_server/cli_server.py:257]: CLI server received command: stop
+2026-06-05 02:39:56,309 [INFO] [CLIPipeServer] [root/controller.py:43]: Exiting Application from CLI...
+2026-06-05 02:39:56,412 [INFO] [CLIPipeServer] [cli_server/cli_server.py:114]: Log pipe server stopped
+2026-06-05 02:39:57,098 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarAlignment: 'center' - Use 'align' instead.
+2026-06-05 02:39:57,098 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarBlurEffect: 'acrylic' - No longer supported and can be removed from the config.
+2026-06-05 02:39:57,098 [INFO] [MainThread] [root/controller.py:21]: Reloading Application because of config change.
+2026-06-05 02:39:57,211 [INFO] [MainThread] [cli_server/cli_server.py:114]: Log pipe server stopped
+2026-06-05 02:39:57,214 [INFO] [MainThread] [root/bar_manager.py:92]: Successfully loaded updated config and re-initialised all bars.
+2026-06-05 02:39:57,429 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-05 02:39:57,430 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-05 02:39:57,430 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-05 02:39:57,430 [ERROR] [MainThread] [root/main.py:75]: Another instance of the YASB is already running.
+2026-06-05 02:39:57,593 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping SystemEventListener...
+2026-06-05 02:39:57,627 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping KomorebiEventListener...
+2026-06-05 02:39:57,629 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-05 02:39:57,630 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-05 02:39:57,630 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-05 02:39:57,630 [INFO] [MainThread] [root/main.py:46]: Waiting for previous YASB instance to exit...
+2026-06-05 02:39:57,881 [INFO] [MainThread] [root/main.py:72]: Previous instance exited, continuing startup.
+2026-06-05 02:39:57,919 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarAlignment: 'center' - Use 'align' instead.
+2026-06-05 02:39:57,919 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarBlurEffect: 'acrylic' - No longer supported and can be removed from the config.
+2026-06-05 02:39:58,046 [INFO] [MainThread] [root/service.py:52]: AudioOutputService starting...
+2026-06-05 02:39:58,461 [INFO] [MainThread] [root/bar_manager.py:102]: Starting SystemEventListener...
+2026-06-05 02:39:58,461 [INFO] [MainThread] [root/bar_manager.py:102]: Starting KomorebiEventListener...
+2026-06-05 02:39:58,462 [INFO] [MainThread] [root/watcher.py:65]: Watching directory: c:\users\wilbe\.config\yasb
+2026-06-05 02:39:58,462 [INFO] [MainThread] [root/watcher.py:104]: Created file watcher
+2026-06-05 02:39:58,463 [INFO] [Dummy-6] [root/event_listener.py:54]: Created named pipe yasb-c0c21941-60b1-11f1-be55-841b772f1719
+2026-06-05 02:39:58,478 [INFO] [MainThread] [root/update_service.py:434]: Background update checker started
+2026-06-05 02:39:58,691 [INFO] [Dummy-6] [root/event_listener.py:147]: Komorebi connected to named pipe: yasb-c0c21941-60b1-11f1-be55-841b772f1719
+2026-06-05 02:39:58,924 [INFO] [MainThread] [root/api.py:69]: Fetching new weather data at 2026-06-05 02:39:58.924322
+2026-06-05 02:40:17,335 [INFO] [CLIPipeServer] [cli_server/cli_server.py:257]: CLI server received command: stop
+2026-06-05 02:40:17,335 [INFO] [CLIPipeServer] [root/controller.py:43]: Exiting Application from CLI...
+2026-06-05 02:40:17,440 [INFO] [CLIPipeServer] [cli_server/cli_server.py:114]: Log pipe server stopped
+2026-06-05 02:40:17,786 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping SystemEventListener...
+2026-06-05 02:40:17,803 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping KomorebiEventListener...
+2026-06-05 02:40:18,363 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-05 02:40:18,364 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-05 02:40:18,364 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-05 02:40:18,412 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarAlignment: 'center' - Use 'align' instead.
+2026-06-05 02:40:18,426 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] HomeConfig: 'distance' - Use 'offset_top' instead.
+2026-06-05 02:40:18,451 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] KomorebiWorkspacesConfig: 'animation' - Use CSS animations instead.
+2026-06-05 02:40:18,458 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] ClockCalendarConfig: 'distance' - Use 'offset_top' instead.
+2026-06-05 02:40:18,489 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] GroupLabelConfig: 'distance' - Use 'offset_top' instead.
+2026-06-05 02:40:18,571 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] WeatherCardConfig: 'distance' - Use 'offset_top' instead.
+2026-06-05 02:40:18,572 [ERROR] [MainThread] [root/weather.py:40]: API key or location is missing. Please provide a valid API key and location.
+2026-06-05 02:40:18,595 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] AudioMenuConfig: 'distance' - Use 'offset_top' instead.
+2026-06-05 02:40:18,605 [INFO] [MainThread] [root/service.py:52]: AudioOutputService starting...
+2026-06-05 02:40:18,970 [ERROR] [MainThread] [root/weather.py:40]: API key or location is missing. Please provide a valid API key and location.
+2026-06-05 02:40:19,209 [INFO] [MainThread] [root/bar_manager.py:102]: Starting KomorebiEventListener...
+2026-06-05 02:40:19,209 [INFO] [MainThread] [root/bar_manager.py:102]: Starting WindowsNotificationEventListener...
+2026-06-05 02:40:19,210 [INFO] [MainThread] [root/watcher.py:65]: Watching directory: c:\users\wilbe\.config\yasb
+2026-06-05 02:40:19,210 [INFO] [MainThread] [root/watcher.py:104]: Created file watcher
+2026-06-05 02:40:19,257 [INFO] [Dummy-7] [root/event_listener.py:54]: Created named pipe yasb-cd1feac9-60b1-11f1-9462-841b772f1719
+2026-06-05 02:40:19,271 [INFO] [MainThread] [root/update_service.py:434]: Background update checker started
+2026-06-05 02:40:19,340 [INFO] [Dummy-7] [root/event_listener.py:147]: Komorebi connected to named pipe: yasb-cd1feac9-60b1-11f1-9462-841b772f1719
+2026-06-05 02:40:38,508 [INFO] [CLIPipeServer] [cli_server/cli_server.py:257]: CLI server received command: stop
+2026-06-05 02:40:38,508 [INFO] [CLIPipeServer] [root/controller.py:43]: Exiting Application from CLI...
+2026-06-05 02:40:38,612 [INFO] [CLIPipeServer] [cli_server/cli_server.py:114]: Log pipe server stopped
+2026-06-05 02:40:38,951 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping KomorebiEventListener...
+2026-06-05 02:40:38,957 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping WindowsNotificationEventListener...
+2026-06-05 02:40:39,519 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-05 02:40:39,519 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-05 02:40:39,519 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-05 02:40:39,550 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarAlignment: 'center' - Use 'align' instead.
+2026-06-05 02:40:39,550 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarBlurEffect: 'acrylic' - No longer supported and can be removed from the config.
+2026-06-05 02:40:39,590 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] KomorebiWorkspacesConfig: 'animation' - Use CSS animations instead.
+2026-06-05 02:40:39,590 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] KomorebiWorkspacesConfig: 'container_padding' - Use CSS padding instead.
+2026-06-05 02:40:39,594 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] ActiveLayoutConfig: 'container_padding' - Use CSS padding instead.
+2026-06-05 02:40:39,594 [WARNING] [MainThread] [deprecation/deprecation.py:137]: [DEPRECATED] ActiveLayoutIconsConfig: 'maximised' renamed to 'maximized' - Use 'maximized' instead.
+2026-06-05 02:40:39,783 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] ApplicationsWidgetConfig: 'container_padding' - Use CSS padding instead.
+2026-06-05 02:40:39,834 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BrightnessConfig: 'container_padding' - Use CSS padding instead.
+2026-06-05 02:40:39,886 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] GalleryConfig: 'lazy_load_delay' - No longer supported and can be removed from the config.
+2026-06-05 02:40:39,886 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] GalleryConfig: 'enable_cache' - No longer supported and can be removed from the config.
+2026-06-05 02:40:39,913 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] WeatherCardConfig: 'distance' - Use 'offset_top' instead.
+2026-06-05 02:40:39,982 [INFO] [MainThread] [root/service.py:52]: AudioOutputService starting...
+2026-06-05 02:40:40,345 [INFO] [MainThread] [root/bar_manager.py:102]: Starting KomorebiEventListener...
+2026-06-05 02:40:40,345 [INFO] [MainThread] [root/bar_manager.py:102]: Starting SystemEventListener...
+2026-06-05 02:40:40,346 [INFO] [MainThread] [root/watcher.py:65]: Watching directory: c:\users\wilbe\.config\yasb
+2026-06-05 02:40:40,346 [INFO] [MainThread] [root/watcher.py:104]: Created file watcher
+2026-06-05 02:40:40,399 [INFO] [Dummy-7] [root/event_listener.py:54]: Created named pipe yasb-d9b8ff42-60b1-11f1-a8f7-841b772f1719
+2026-06-05 02:40:40,401 [INFO] [MainThread] [root/update_service.py:434]: Background update checker started
+2026-06-05 02:40:40,461 [INFO] [Dummy-7] [root/event_listener.py:147]: Komorebi connected to named pipe: yasb-d9b8ff42-60b1-11f1-a8f7-841b772f1719
+2026-06-05 02:40:40,766 [INFO] [MainThread] [root/api.py:69]: Fetching new weather data at 2026-06-05 02:40:40.766670
+2026-06-05 02:40:51,466 [INFO] [CLIPipeServer] [cli_server/cli_server.py:257]: CLI server received command: stop
+2026-06-05 02:40:51,467 [INFO] [CLIPipeServer] [root/controller.py:43]: Exiting Application from CLI...
+2026-06-05 02:40:51,579 [INFO] [CLIPipeServer] [cli_server/cli_server.py:114]: Log pipe server stopped
+2026-06-05 02:40:52,223 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarAlignment: 'center' - Use 'align' instead.
+2026-06-05 02:40:52,224 [INFO] [MainThread] [root/controller.py:21]: Reloading Application because of config change.
+2026-06-05 02:40:52,330 [INFO] [MainThread] [cli_server/cli_server.py:114]: Log pipe server stopped
+2026-06-05 02:40:52,337 [INFO] [MainThread] [root/bar_manager.py:92]: Successfully loaded updated config and re-initialised all bars.
+2026-06-05 02:40:52,563 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-05 02:40:52,563 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-05 02:40:52,564 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-05 02:40:52,564 [ERROR] [MainThread] [root/main.py:75]: Another instance of the YASB is already running.
+2026-06-05 02:40:52,684 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping KomorebiEventListener...
+2026-06-05 02:40:52,697 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping SystemEventListener...
+2026-06-05 02:40:52,738 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-05 02:40:52,739 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-05 02:40:52,739 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-05 02:40:52,739 [INFO] [MainThread] [root/main.py:46]: Waiting for previous YASB instance to exit...
+2026-06-05 02:40:52,990 [INFO] [MainThread] [root/main.py:72]: Previous instance exited, continuing startup.
+2026-06-05 02:40:53,020 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarAlignment: 'center' - Use 'align' instead.
+2026-06-05 02:40:53,058 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] KomorebiWorkspacesConfig: 'animation' - Use CSS animations instead.
+2026-06-05 02:40:53,150 [ERROR] [MainThread] [root/weather.py:40]: API key or location is missing. Please provide a valid API key and location.
+2026-06-05 02:40:53,165 [INFO] [MainThread] [root/service.py:52]: AudioOutputService starting...
+2026-06-05 02:40:53,493 [ERROR] [MainThread] [root/weather.py:40]: API key or location is missing. Please provide a valid API key and location.
+2026-06-05 02:40:53,549 [INFO] [MainThread] [root/bar_manager.py:102]: Starting WindowsNotificationEventListener...
+2026-06-05 02:40:53,549 [INFO] [MainThread] [root/bar_manager.py:102]: Starting KomorebiEventListener...
+2026-06-05 02:40:53,550 [INFO] [MainThread] [root/watcher.py:65]: Watching directory: c:\users\wilbe\.config\yasb
+2026-06-05 02:40:53,550 [INFO] [MainThread] [root/watcher.py:104]: Created file watcher
+2026-06-05 02:40:53,613 [INFO] [Dummy-6] [root/event_listener.py:54]: Created named pipe yasb-e197d3c0-60b1-11f1-8795-841b772f1719
+2026-06-05 02:40:53,615 [INFO] [MainThread] [root/update_service.py:434]: Background update checker started
+2026-06-05 02:40:53,681 [INFO] [Dummy-6] [root/event_listener.py:147]: Komorebi connected to named pipe: yasb-e197d3c0-60b1-11f1-8795-841b772f1719
