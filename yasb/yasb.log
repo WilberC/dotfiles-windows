@@ -11,3 +11,86 @@ bars:
       - Extra inputs are not permitted
 
 2026-06-04 03:23:51,671 [ERROR] [MainThread] [root/config.py:158]: User config file could not be loaded. Exiting Application.
+2026-06-05 01:49:58,196 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-05 01:49:58,196 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-05 01:49:58,197 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-05 01:49:58,351 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarBlurEffect: 'acrylic' - No longer supported and can be removed from the config.
+2026-06-05 01:49:58,923 [INFO] [MainThread] [root/service.py:52]: AudioOutputService starting...
+2026-06-05 01:49:58,974 [ERROR] [MainThread] [root/widget_builder.py:87]: Failed to import widget with type yasb.network.NetworkWidget
+Traceback (most recent call last):
+  File "D:\a\yasb\yasb\src\core\utils\widget_builder.py", line 43, in _build_widget
+  File "C:\hostedtoolcache\windows\Python\3.14.4\x64\Lib\importlib\__init__.py", line 88, in import_module
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1335, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.widgets.yasb.network'
+2026-06-05 01:49:59,362 [ERROR] [MainThread] [root/widget_builder.py:87]: Failed to import widget with type yasb.network.NetworkWidget
+Traceback (most recent call last):
+  File "D:\a\yasb\yasb\src\core\utils\widget_builder.py", line 43, in _build_widget
+  File "C:\hostedtoolcache\windows\Python\3.14.4\x64\Lib\importlib\__init__.py", line 88, in import_module
+  File "<frozen importlib._bootstrap>", line 1406, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1335, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'core.widgets.yasb.network'
+2026-06-05 01:49:59,362 [WARNING] [MainThread] [root/widget_builder.py:36]: Ignoring construction of invalid widget 'power-menu'
+2026-06-05 01:49:59,420 [INFO] [MainThread] [root/bar_manager.py:102]: Starting KomorebiEventListener...
+2026-06-05 01:49:59,421 [ERROR] [MainThread] [root/widget_builder.py:114]: Failed to validate widget(s) due to invalid options  - power-menu
+      buttons:
+        logout:
+        - Extra inputs are not permitted
+      
+2026-06-05 01:49:59,453 [INFO] [Dummy-4] [root/event_listener.py:54]: Created named pipe yasb-c530beee-60aa-11f1-94a8-841b772f1719
+2026-06-05 01:49:59,702 [ERROR] [MainThread] [root/widget_builder.py:129]: Failed to build widget(s) due to unknown widget type(s)  - network has unknown type "yasb.network.NetworkWidget"
+2026-06-05 01:49:59,713 [INFO] [MainThread] [root/watcher.py:65]: Watching directory: c:\users\wilbe\.config\yasb
+2026-06-05 01:49:59,713 [INFO] [MainThread] [root/watcher.py:104]: Created file watcher
+2026-06-05 01:49:59,726 [INFO] [MainThread] [root/update_service.py:434]: Background update checker started
+2026-06-05 01:49:59,764 [INFO] [Dummy-4] [root/event_listener.py:147]: Komorebi connected to named pipe: yasb-c530beee-60aa-11f1-94a8-841b772f1719
+2026-06-05 01:52:59,738 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarBlurEffect: 'acrylic' - No longer supported and can be removed from the config.
+2026-06-05 01:52:59,739 [INFO] [MainThread] [root/controller.py:21]: Reloading Application because of config change.
+2026-06-05 01:52:59,840 [INFO] [MainThread] [cli_server/cli_server.py:114]: Log pipe server stopped
+2026-06-05 01:52:59,845 [INFO] [MainThread] [root/bar_manager.py:92]: Successfully loaded updated config and re-initialised all bars.
+2026-06-05 01:53:00,276 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping KomorebiEventListener...
+2026-06-05 01:53:00,382 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-05 01:53:00,383 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-05 01:53:00,383 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-05 01:53:00,411 [WARNING] [MainThread] [deprecation/deprecation.py:133]: [DEPRECATED] BarBlurEffect: 'acrylic' - No longer supported and can be removed from the config.
+2026-06-05 01:53:00,685 [INFO] [MainThread] [root/service.py:52]: AudioOutputService starting...
+2026-06-05 01:53:01,089 [WARNING] [MainThread] [root/widget_builder.py:36]: Ignoring construction of invalid widget 'power-menu'
+2026-06-05 01:53:01,107 [INFO] [MainThread] [root/bar_manager.py:102]: Starting KomorebiEventListener...
+2026-06-05 01:53:01,108 [ERROR] [MainThread] [root/widget_builder.py:114]: Failed to validate widget(s) due to invalid options  - power-menu
+      buttons:
+        logout:
+        - Extra inputs are not permitted
+      
+2026-06-05 01:53:01,109 [INFO] [Dummy-5] [root/event_listener.py:54]: Created named pipe yasb-317bfaa0-60ab-11f1-af1c-841b772f1719
+2026-06-05 01:53:01,171 [INFO] [MainThread] [root/watcher.py:65]: Watching directory: c:\users\wilbe\.config\yasb
+2026-06-05 01:53:01,171 [INFO] [MainThread] [root/watcher.py:104]: Created file watcher
+2026-06-05 01:53:01,240 [INFO] [MainThread] [root/update_service.py:434]: Background update checker started
+2026-06-05 01:53:01,274 [INFO] [Dummy-5] [root/event_listener.py:147]: Komorebi connected to named pipe: yasb-317bfaa0-60ab-11f1-af1c-841b772f1719
+2026-06-05 01:53:34,869 [INFO] [MainThread] [root/controller.py:21]: Reloading Application because of config change.
+2026-06-05 01:53:34,974 [INFO] [MainThread] [cli_server/cli_server.py:114]: Log pipe server stopped
+2026-06-05 01:53:34,978 [INFO] [MainThread] [root/bar_manager.py:92]: Successfully loaded updated config and re-initialised all bars.
+2026-06-05 01:53:35,286 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping KomorebiEventListener...
+2026-06-05 01:53:35,448 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-05 01:53:35,448 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-05 01:53:35,448 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-05 01:53:35,750 [INFO] [MainThread] [root/service.py:52]: AudioOutputService starting...
+2026-06-05 01:53:36,020 [INFO] [MainThread] [root/bar_manager.py:102]: Starting KomorebiEventListener...
+2026-06-05 01:53:36,021 [INFO] [MainThread] [root/watcher.py:65]: Watching directory: c:\users\wilbe\.config\yasb
+2026-06-05 01:53:36,021 [INFO] [MainThread] [root/watcher.py:104]: Created file watcher
+2026-06-05 01:53:36,022 [INFO] [Dummy-7] [root/event_listener.py:54]: Created named pipe yasb-464b4d04-60ab-11f1-bea0-841b772f1719
+2026-06-05 01:53:36,139 [INFO] [MainThread] [root/update_service.py:434]: Background update checker started
+2026-06-05 01:53:36,189 [INFO] [Dummy-7] [root/event_listener.py:147]: Komorebi connected to named pipe: yasb-464b4d04-60ab-11f1-bea0-841b772f1719
+2026-06-05 01:54:11,750 [INFO] [MainThread] [root/controller.py:43]: Exiting Application from context menu...
+2026-06-05 01:54:11,852 [INFO] [MainThread] [cli_server/cli_server.py:114]: Log pipe server stopped
+2026-06-05 01:54:12,172 [INFO] [MainThread] [root/bar_manager.py:118]: Stopping KomorebiEventListener...
+2026-06-05 01:54:15,070 [INFO] [MainThread] [root/log.py:104]: YASB v2.0.2
+2026-06-05 01:54:15,070 [INFO] [CLIPipeServer] [cli_server/cli_server.py:216]: CLI server started v1.1.7
+2026-06-05 01:54:15,070 [INFO] [MainThread] [cli_server/cli_server.py:106]: Log pipe server started
+2026-06-05 01:54:15,334 [INFO] [MainThread] [root/service.py:52]: AudioOutputService starting...
+2026-06-05 01:54:15,751 [INFO] [MainThread] [root/bar_manager.py:102]: Starting KomorebiEventListener...
+2026-06-05 01:54:15,752 [INFO] [MainThread] [root/watcher.py:65]: Watching directory: c:\users\wilbe\.config\yasb
+2026-06-05 01:54:15,752 [INFO] [MainThread] [root/watcher.py:104]: Created file watcher
+2026-06-05 01:54:15,796 [INFO] [Dummy-7] [root/event_listener.py:54]: Created named pipe yasb-5df9a686-60ab-11f1-b05d-841b772f1719
+2026-06-05 01:54:15,799 [INFO] [MainThread] [root/update_service.py:434]: Background update checker started
+2026-06-05 01:54:15,863 [INFO] [Dummy-7] [root/event_listener.py:147]: Komorebi connected to named pipe: yasb-5df9a686-60ab-11f1-b05d-841b772f1719

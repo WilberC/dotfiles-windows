@@ -1,7 +1,7 @@
 # dotfiles-windows/komorebi/whkdrc
 # Symlinked to: %USERPROFILE%\.config\whkdrc
 
-.shell pwsh
+.shell powershell
 
 # Focus
 alt + h                 : komorebic focus left
@@ -46,6 +46,8 @@ alt + left              : komorebic cycle-stack previous
 alt + right             : komorebic cycle-stack next
 
 # Misc
-alt + /                 : notepad "$env:USERPROFILE\.config\whkdrc"
+alt + oem_2             : komorebic toggle-shortcuts
+alt + i                 : komorebic toggle-shortcuts
+alt + shift + oem_2     : notepad "$env:USERPROFILE\.config\whkdrc"
 alt + shift + r         : komorebic retile
 alt + shift + q         : komorebic close

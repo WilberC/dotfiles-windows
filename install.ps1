@@ -188,7 +188,8 @@ foreach ($target in $links.Keys) {
 
 # 8. Register komorebi login task
 Write-Step "Registering komorebi login task"
-$action    = New-ScheduledTaskAction -Execute "komorebic" -Argument "start --whkd"
+$komorebicPath = (Get-Command komorebic -ErrorAction Stop).Source
+$action    = New-ScheduledTaskAction -Execute $komorebicPath -Argument "start --whkd"
 $trigger   = New-ScheduledTaskTrigger -AtLogOn
 $settings  = New-ScheduledTaskSettingsSet -ExecutionTimeLimit 0
 $principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -RunLevel Highest

@@ -12,7 +12,6 @@ bars:
       align: "left"
     blur_effect:
       enabled: true
-      acrylic: true
       dark_mode: true
     window_flags:
       always_on_top: true
@@ -28,7 +27,7 @@ bars:
     widgets:
       left:   ["komorebi-workspaces", "komorebi-active-layout"]
       center: ["clock"]
-      right:  ["volume", "battery", "cpu", "memory", "network", "power-menu"]
+      right:  ["volume", "battery", "cpu", "memory", "wifi", "power-menu"]
 
 widgets:
   komorebi-workspaces:
@@ -91,11 +90,18 @@ widgets:
       label_alt: "{icon} {percent}%"
       update_interval: 30000
 
-  network:
-    type: "yasb.network.NetworkWidget"
+  wifi:
+    type: "yasb.wifi.WifiWidget"
     options:
-      label: "{icon}"
-      label_alt: "{wifi_name}"
+      label: "{wifi_icon}"
+      label_alt: "{wifi_icon} {wifi_name}"
+      ethernet_label: "{wifi_icon}"
+      ethernet_label_alt: "{wifi_icon} {ip_addr}"
+      update_interval: 5000
+      callbacks:
+        on_left: "toggle_label"
+        on_middle: "exec cmd.exe /c start ms-settings:network"
+        on_right: "toggle_menu"
 
   power-menu:
     type: "yasb.power_menu.PowerMenuWidget"
@@ -109,5 +115,5 @@ widgets:
         restart:  ["", "Restart"]
         sleep:    ["", "Sleep"]
         lock:     ["", "Lock"]
-        logout:   ["", "Logout"]
+        signout:  ["", "Sign out"]
         cancel:   ["", "Cancel"]
