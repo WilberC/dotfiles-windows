@@ -1,7 +1,13 @@
 -- dotfiles-windows/wezterm/.wezterm.lua
 -- Values marked "(patched)" are overwritten by themes/apply-theme.ps1
 local wezterm = require("wezterm")
+local mux     = wezterm.mux
 local config  = wezterm.config_builder()
+
+wezterm.on("gui-startup", function(cmd)
+  local _, _, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
 
 -- Appearance (patched by apply-theme.ps1)
 config.color_scheme = "rose-pine"
@@ -43,8 +49,55 @@ local copy_or_interrupt = wezterm.action_callback(function(window, pane)
   end
 end)
 
+local show_shortcuts = wezterm.action_callback(function(window, pane)
+  window:perform_action(act.InputSelector({
+    title = "Useful shortcuts",
+    fuzzy = true,
+    choices = {
+      { id = "section_useful", label = "-- Useful shortcuts --" },
+      { id = "split_right", label = "Ctrl+Shift+\\  Split pane right" },
+      { id = "split_down",  label = "Ctrl+Shift+-  Split pane down" },
+      { id = "move_left",   label = "Ctrl+Shift+H  Move to left pane" },
+      { id = "move_down",   label = "Ctrl+Shift+J  Move to lower pane" },
+      { id = "move_up",     label = "Ctrl+Shift+K  Move to upper pane" },
+      { id = "move_right",  label = "Ctrl+Shift+L  Move to right pane" },
+      { id = "close_pane",  label = "Ctrl+W        Close current pane" },
+      { id = "new_tab",     label = "Ctrl+T        New tab" },
+      { id = "close_tab",   label = "Ctrl+Shift+W  Close current tab" },
+      { id = "next_tab",    label = "Ctrl+Tab      Next tab" },
+      { id = "prev_tab",    label = "Ctrl+Shift+Tab Previous tab" },
+      { id = "search",      label = "Ctrl+F        Search scrollback" },
+      { id = "section_other", label = "-- Other shortcuts --" },
+      { id = "all_actions", label = "Open full WezTerm action list" },
+    },
+    action = wezterm.action_callback(function(inner_window, inner_pane, id)
+      local actions = {
+        split_right = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+        split_down  = act.SplitVertical({ domain = "CurrentPaneDomain" }),
+        move_left   = act.ActivatePaneDirection("Left"),
+        move_down   = act.ActivatePaneDirection("Down"),
+        move_up     = act.ActivatePaneDirection("Up"),
+        move_right  = act.ActivatePaneDirection("Right"),
+        close_pane  = act.CloseCurrentPane({ confirm = false }),
+        new_tab     = act.SpawnTab("CurrentPaneDomain"),
+        close_tab   = act.CloseCurrentTab({ confirm = false }),
+        next_tab    = act.ActivateTabRelative(1),
+        prev_tab    = act.ActivateTabRelative(-1),
+        search      = act.Search("CurrentSelectionOrEmptyString"),
+        all_actions = act.ShowLauncherArgs({ flags = "FUZZY|KEY_ASSIGNMENTS" }),
+      }
+
+      if id and actions[id] then
+        inner_window:perform_action(actions[id], inner_pane)
+      end
+    end),
+  }), pane)
+end)
+
 config.keys = {
+  { key = "p",   mods = "CTRL|SHIFT", action = show_shortcuts },
   { key = "c",   mods = "CTRL",       action = copy_or_interrupt },
+  { key = "f",   mods = "CTRL",       action = act.Search("CurrentSelectionOrEmptyString") },
   { key = "v",   mods = "CTRL",       action = act.PasteFrom("Clipboard") },
 
   -- Ghostty/macOS-style splits, adapted for Windows to avoid the Super key.
