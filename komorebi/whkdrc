@@ -46,6 +46,7 @@ alt + left              : komorebic cycle-stack previous
 alt + right             : komorebic cycle-stack next
 
 # Misc
+alt + shift + s         : Start-Process "ms-screenclip:"
 alt + oem_2             : komorebic toggle-shortcuts
 alt + i                 : komorebic toggle-shortcuts
 alt + shift + oem_2     : notepad "$env:USERPROFILE\.config\whkdrc"
