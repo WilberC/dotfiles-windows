@@ -1,6 +1,7 @@
 # Personal config — copy user.conf.example to user.conf and fill in your values
 user.conf
 apps.conf
+uninstall.conf
 
 # Flow Launcher backup may contain personal data
 flow-launcher/*.json

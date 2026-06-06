@@ -1,0 +1,37 @@
+# dotfiles-windows/uninstall.conf
+# Copy this file to uninstall.conf and set each item to "true" or "false".
+# "true" removes that item. "false" keeps it.
+# Run from an Administrator PowerShell with: .\uninstall.ps1
+
+# Stop desktop tools before removing startup entries or packages.
+STOP_RUNNING_DESKTOP_TOOLS="true"
+
+# Startup entries created by install.ps1.
+REMOVE_KOMOREBI_STARTUP_TASK="true"
+DISABLE_YASB_AUTOSTART="true"
+REMOVE_FLOW_LAUNCHER_AUTOSTART="true"
+
+# Config links created by install.ps1.
+# The uninstaller removes only links that point back into this repo.
+REMOVE_CONFIG_LINKS="true"
+
+# Runtime files generated inside this repo by installed tools.
+# Flow Launcher backups may contain personal data, so they are separate.
+REMOVE_GENERATED_RUNTIME_FILES="true"
+REMOVE_FLOW_LAUNCHER_BACKUPS="false"
+
+# Core packages installed by install.ps1 from packages.json.
+REMOVE_KOMOREBI="true"
+REMOVE_WHKD="true"
+REMOVE_YASB="true"
+REMOVE_WEZTERM="true"
+REMOVE_POWERTOYS="true"
+REMOVE_ZED="true"
+
+# Optional packages installed by install.ps1.
+REMOVE_FLOW_LAUNCHER="true"
+REMOVE_WINDHAWK="true"
+
+# Optional apps installed by install-apps.ps1 from apps.conf.
+REMOVE_ZEN="true"
+REMOVE_OBSIDIAN="true"

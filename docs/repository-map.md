@@ -17,6 +17,8 @@ dotfiles-windows/
 |-- user.conf
 |-- packages.json
 |-- install.ps1
+|-- uninstall.ps1
+|-- uninstall.conf.example
 |-- update-zed.ps1
 |-- themes/
 |   |-- rose-pine.conf
@@ -52,6 +54,8 @@ dotfiles-windows/
 | `user.conf` | Gitignored personal settings |
 | `packages.json` | winget manifest for always-installed core packages |
 | `install.ps1` | Bootstrap: install core packages plus optional packages, apply theme, symlink configs, register login task |
+| `uninstall.conf.example` | Reference config for choosing what the uninstaller removes |
+| `uninstall.ps1` | Config-driven cleanup for packages, startup entries, symlinks, and generated runtime files |
 | `update-zed.ps1` | Pulls latest Zed config from `WilberC/dotfiles` |
 | `themes/*.conf` | Theme palettes and per-app values |
 | `themes/apply-theme.ps1` | Patches WezTerm, YASB, and Komorebi from the active theme |

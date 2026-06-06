@@ -36,6 +36,20 @@ notepad apps.conf
 This keeps `install.ps1` focused on the dotfiles setup while `install-apps.ps1`
 only installs apps enabled in `apps.conf`.
 
+## Uninstall
+
+The uninstaller is also config-driven. Copy the example, choose what should be
+removed or kept, then run it from an Administrator PowerShell:
+
+```powershell
+cp uninstall.conf.example uninstall.conf
+notepad uninstall.conf
+.\uninstall.ps1
+```
+
+Set any `REMOVE_*` value to `"false"` to keep that package, startup entry, or
+config link.
+
 ## Docs
 
 | Start here | What it covers |

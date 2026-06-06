@@ -31,8 +31,8 @@ Get-Content "$DotfilesPath\user.conf" | Where-Object {
 }
 
 $theme     = $conf["THEME"]
-$installFlowLauncher = $conf["INSTALL_FLOW_LAUNCHER"] -eq "true"
-$installWH = $conf["INSTALL_WINDHAWK"]  -eq "true"
+$installFlowLauncher = $conf["INSTALL_FLOW_LAUNCHER"] -ne "false"
+$installWH = $conf["INSTALL_WINDHAWK"]  -ne "false"
 $setupSummary = [System.Collections.Generic.List[object]]::new()
 
 function Write-Step($msg) { Write-Host "`n>> $msg" -ForegroundColor Cyan }
@@ -150,7 +150,7 @@ if ($installFlowLauncher) {
     Install-WingetPackage "Flow-Launcher.Flow-Launcher" "Flow Launcher"
     Add-Summary "Flow Launcher" "OK" "Installed or already present"
 } else {
-    Write-Skip "Flow Launcher (set INSTALL_FLOW_LAUNCHER=true in user.conf to enable)"
+    Write-Skip "Flow Launcher (set INSTALL_FLOW_LAUNCHER=false in user.conf to skip)"
     Add-Summary "Flow Launcher" "SKIP" "Disabled in user.conf"
 }
 
@@ -160,7 +160,7 @@ if ($installWH) {
     Install-WingetPackage "RamenSoftware.Windhawk" "Windhawk"
     Add-Summary "Windhawk" "OK" "Installed or already present"
 } else {
-    Write-Skip "Windhawk (set INSTALL_WINDHAWK=true in user.conf to enable)"
+    Write-Skip "Windhawk (set INSTALL_WINDHAWK=false in user.conf to skip)"
     Add-Summary "Windhawk" "SKIP" "Disabled in user.conf"
 }
 

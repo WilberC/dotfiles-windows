@@ -152,3 +152,17 @@ notepad user.conf
 
 # 4. If INSTALL_WINDHAWK=true, install Windhawk mods manually
 ```
+
+## Uninstalling
+
+To remove the managed setup, copy and edit the uninstall config:
+
+```powershell
+cp uninstall.conf.example uninstall.conf
+notepad uninstall.conf
+.\uninstall.ps1
+```
+
+Every `REMOVE_*` setting controls one package, startup entry, config link, or
+generated file group. Set an item to `"false"` to keep it. Config links are only
+removed when they still point back into this repo.
