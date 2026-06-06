@@ -126,13 +126,17 @@ function Invoke-KomorebiWorkspaceSetup {
     & komorebic initial-named-workspace-rule title "League of Legends" game
     & komorebic initial-named-workspace-rule exe zen.exe zen
     & komorebic initial-named-workspace-rule exe Zen.exe zen
+    & komorebic initial-named-workspace-rule class MozillaWindowClass zen
     & komorebic initial-named-workspace-rule exe wezterm-gui.exe terminals
     & komorebic initial-named-workspace-rule exe WezTerm.exe terminals
     & komorebic initial-named-workspace-rule exe wezterm.exe terminals
+    & komorebic initial-named-workspace-rule class org.wezfurlong.wezterm terminals
     & komorebic initial-named-workspace-rule exe zed.exe zed
     & komorebic initial-named-workspace-rule exe Zed.exe zed
     & komorebic initial-named-workspace-rule exe chromium.exe "dev browsers"
     & komorebic initial-named-workspace-rule exe Chromium.exe "dev browsers"
+    & komorebic initial-named-workspace-rule exe chrome.exe "dev browsers"
+    & komorebic initial-named-workspace-rule title Chromium "dev browsers"
     & komorebic focus-monitor-workspace 1 0
     & komorebic focus-monitor-workspace 0 3
 

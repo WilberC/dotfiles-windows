@@ -113,7 +113,13 @@
 					"name": "zen",
 					"layout": "BSP",
 					"initial_workspace_rules": [
-						{ "kind": "Exe", "id": "zen.exe", "matching_strategy": "Equals" }
+						{ "kind": "Exe", "id": "zen.exe", "matching_strategy": "Equals" },
+						{ "kind": "Exe", "id": "Zen.exe", "matching_strategy": "Equals" },
+						{
+							"kind": "Class",
+							"id": "MozillaWindowClass",
+							"matching_strategy": "Equals"
+						}
 					]
 				},
 				{
@@ -123,6 +129,21 @@
 						{
 							"kind": "Exe",
 							"id": "wezterm-gui.exe",
+							"matching_strategy": "Equals"
+						},
+						{
+							"kind": "Exe",
+							"id": "WezTerm.exe",
+							"matching_strategy": "Equals"
+						},
+						{
+							"kind": "Exe",
+							"id": "wezterm.exe",
+							"matching_strategy": "Equals"
+						},
+						{
+							"kind": "Class",
+							"id": "org.wezfurlong.wezterm",
 							"matching_strategy": "Equals"
 						}
 					]
@@ -142,6 +163,21 @@
 							"kind": "Exe",
 							"id": "chromium.exe",
 							"matching_strategy": "Equals"
+						},
+						{
+							"kind": "Exe",
+							"id": "Chromium.exe",
+							"matching_strategy": "Equals"
+						},
+						{
+							"kind": "Exe",
+							"id": "chrome.exe",
+							"matching_strategy": "Equals"
+						},
+						{
+							"kind": "Title",
+							"id": "Chromium",
+							"matching_strategy": "Contains"
 						}
 					]
 				}
