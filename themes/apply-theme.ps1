@@ -26,6 +26,7 @@ Get-Content $themeFile | Where-Object { $_ -notmatch '^\s*#' -and $_ -match '=' 
 # Validate required theme keys
 $requiredKeys = @(
     'WEZTERM_COLOR_SCHEME', 'YASB_BAR_BG', 'YASB_BORDER',
+    'WEZTERM_SELECTION_FG', 'WEZTERM_SELECTION_BG',
     'KOMOREBI_BORDER_SINGLE', 'KOMOREBI_BORDER_STACK', 'KOMOREBI_BORDER_MONOCLE'
 )
 foreach ($k in $requiredKeys) {
@@ -54,8 +55,12 @@ $weztermFont        = $uc['WEZTERM_FONT']
 $weztermFontSize    = $uc['WEZTERM_FONT_SIZE']
 $weztermOpacity     = $uc['WEZTERM_OPACITY']
 $weztermBlur        = $uc['WEZTERM_BLUR']
+$weztermSelectionFg = $t['WEZTERM_SELECTION_FG']
+$weztermSelectionBg = $t['WEZTERM_SELECTION_BG']
 
 $lua = $lua -replace 'color_scheme\s*=\s*"[^"]*"',            "color_scheme = `"$weztermColorScheme`""
+$lua = $lua -replace 'selection_fg\s*=\s*"[^"]*"',            "selection_fg = `"$weztermSelectionFg`""
+$lua = $lua -replace 'selection_bg\s*=\s*"[^"]*"',            "selection_bg = `"$weztermSelectionBg`""
 $lua = $lua -replace 'font\s*=\s*wezterm\.font\("[^"]*"(?:,\s*\{[^}]*\})?\)', "font = wezterm.font(`"$weztermFont`")"
 $lua = $lua -replace 'font_size\s*=\s*[\d.]+',                 "font_size = $weztermFontSize"
 $lua = $lua -replace 'window_background_opacity\s*=\s*[\d.]+', "window_background_opacity = $weztermOpacity"

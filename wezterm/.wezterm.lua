@@ -10,6 +10,10 @@ config.win32_system_backdrop = "Acrylic"
 config.text_background_opacity   = 1.0
 config.window_decorations        = "RESIZE"
 config.window_padding            = { left = 12, right = 12, top = 10, bottom = 10 }
+config.colors = {
+  selection_fg = "#191724",
+  selection_bg = "#9ccfd8",
+}
 
 -- Font (patched by apply-theme.ps1)
 config.font = wezterm.font("JetBrainsMono Nerd Font")
