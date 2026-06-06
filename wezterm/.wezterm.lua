@@ -68,6 +68,14 @@ config.keys = {
   { key = "0",   mods = "CTRL",       action = act.ResetFontSize },
 }
 
+config.mouse_bindings = {
+  {
+    event = { Up = { streak = 1, button = "Right" } },
+    mods = "NONE",
+    action = act.PasteFrom("Clipboard"),
+  },
+}
+
 -- Default shell (patched by apply-theme.ps1 when WEZTERM_DEFAULT_SHELL=wsl)
 config.default_prog = { "wsl.exe", "--distribution", "Ubuntu", "--cd", "~" }
 

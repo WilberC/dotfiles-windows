@@ -20,3 +20,5 @@ Komorebi window management is driven by `komorebi/whkdrc`.
 | `Alt + Shift + /` | Open the active whkd shortcut file |
 | `Alt + Shift + R` | Retile |
 | `Alt + Shift + Q` | Close window |
+
+WezTerm also supports right-click paste from the clipboard.
