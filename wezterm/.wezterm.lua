@@ -35,7 +35,18 @@ config.scrollback_lines = 10000
 
 -- Keybindings
 local act = wezterm.action
+local copy_or_interrupt = wezterm.action_callback(function(window, pane)
+  if window:get_selection_text_for_pane(pane) ~= "" then
+    window:perform_action(act.CopyTo("Clipboard"), pane)
+  else
+    window:perform_action(act.SendKey({ key = "c", mods = "CTRL" }), pane)
+  end
+end)
+
 config.keys = {
+  { key = "c",   mods = "CTRL",       action = copy_or_interrupt },
+  { key = "v",   mods = "CTRL",       action = act.PasteFrom("Clipboard") },
+
   -- Ghostty/macOS-style splits, adapted for Windows to avoid the Super key.
   { key = "d",   mods = "CTRL",       action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
   { key = "d",   mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
