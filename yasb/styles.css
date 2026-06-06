@@ -171,6 +171,40 @@ QToolTip { margin:6px; color: #cdd6f4;font-size:12px; background-color: #12151b;
     padding-right: 4px;
     color: #f9e2af;
 }
+/* System info widgets */
+.cpu-widget .icon,
+.memory-widget .icon,
+.gpu-widget .icon {
+    font-size: 16px;
+    padding-right: 4px;
+}
+.cpu-widget .icon {
+    color: #89b4fa;
+}
+.memory-widget .icon {
+    color: #cba6f7;
+}
+.gpu-widget .icon {
+    color: #fab387;
+}
+.cpu-widget .label.status-medium,
+.memory-widget .label.status-medium,
+.gpu-widget .label.status-medium {
+    color: #f9e2af;
+}
+.cpu-widget .label.status-high,
+.memory-widget .label.status-high,
+.gpu-widget .label.status-high,
+.cpu-widget .label.status-critical,
+.memory-widget .label.status-critical,
+.gpu-widget .label.status-critical {
+    color: #f38ba8;
+}
+.cpu-menu,
+.memory-menu,
+.gpu-menu {
+    background-color: var(--background-color);
+}
 /* Weather card style */
 .weather-card {
     background-color:var(--background-color);
@@ -228,24 +262,25 @@ QToolTip { margin:6px; color: #cdd6f4;font-size:12px; background-color: #12151b;
 /* Komorebi Workspace Widget */
 .komorebi-workspaces .ws-btn {
     border: none;
-    color:transparent;
-	margin:0 3px;
-    border-radius: 8px;
-    font-size:1px;
-    background-color: #4f5868;
-    height: 16px;
-    width: 16px;
+    color: var(--foreground-color);
+	margin:0 2px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: rgba(79, 88, 104, 0.45);
+    min-height: 22px;
+    padding: 0 9px;
 }
 .komorebi-workspaces .ws-btn:hover {
     background-color: var(--blue-color)
 }
 .komorebi-workspaces .ws-btn.populated {
     background-color: #b4befe;
+    color: var(--background-color);
 }
 .komorebi-workspaces .ws-btn.active {
-    width: 46px;
-    max-width: 46px;
-    background-color: var(--blue-color)
+    background-color: var(--blue-color);
+    color: var(--background-color);
 }
 .komorebi-workspaces .float-override {
     color: #a6e3a1;
