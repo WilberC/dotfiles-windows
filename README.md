@@ -6,6 +6,8 @@ editor settings, and Windows UI patches for Windows 11.
 This repo is the source of truth for the configs. `install.ps1` installs the
 core tools plus optional tools enabled in `user.conf`, applies the selected
 theme, creates symlinks, and registers the Komorebi startup task.
+That task starts Komorebi/whkd and reapplies the Komorebi config automatically
+after login.
 
 ## Quick Start
 

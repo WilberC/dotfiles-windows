@@ -3,6 +3,7 @@
 
 param(
     [switch]$All,
+    [switch]$Startup,
     [switch]$Komorebi,
     [switch]$Whkd,
     [switch]$Yasb
@@ -22,6 +23,11 @@ function Test-Command($name) {
 }
 
 function Invoke-KomorebiReload {
+    param(
+        [int]$Attempts = 1,
+        [int]$DelaySeconds = 1
+    )
+
     Write-Step "Reloading Komorebi configuration"
 
     if (-not (Test-Command "komorebic")) {
@@ -36,11 +42,18 @@ function Invoke-KomorebiReload {
         return $false
     }
 
-    & komorebic replace-configuration $komorebiConfig
+    for ($attempt = 1; $attempt -le $Attempts; $attempt++) {
+        & komorebic replace-configuration $komorebiConfig
 
-    if ($LASTEXITCODE -eq 0) {
-        Write-Ok "$komorebiConfig reloaded"
-        return $true
+        if ($LASTEXITCODE -eq 0) {
+            Write-Ok "$komorebiConfig reloaded"
+            return $true
+        }
+
+        if ($attempt -lt $Attempts) {
+            Write-Warn "Komorebi reload attempt $attempt failed; retrying in $DelaySeconds seconds"
+            Start-Sleep -Seconds $DelaySeconds
+        }
     }
 
     Write-Bad "komorebic replace-configuration failed with exit code $LASTEXITCODE"
@@ -120,6 +133,8 @@ function Invoke-KomorebiWorkspaceSetup {
     & komorebic initial-named-workspace-rule exe Zed.exe zed
     & komorebic initial-named-workspace-rule exe chromium.exe "dev browsers"
     & komorebic initial-named-workspace-rule exe Chromium.exe "dev browsers"
+    & komorebic focus-monitor-workspace 1 0
+    & komorebic focus-monitor-workspace 0 3
 
     if ($LASTEXITCODE -eq 0) {
         Write-Ok "Named workspaces and routing rules applied"
@@ -150,11 +165,32 @@ function Invoke-YasbRestart {
     return $false
 }
 
-if (-not ($All -or $Komorebi -or $Whkd -or $Yasb)) {
+if (-not ($All -or $Startup -or $Komorebi -or $Whkd -or $Yasb)) {
     $Komorebi = $true
 }
 
 $hadFailure = $false
+
+if ($Startup) {
+    Write-Step "Waiting for login startup"
+    Start-Sleep -Seconds 5
+
+    $hadFailure = -not (Invoke-WhkdRestart) -or $hadFailure
+    $hadFailure = -not (Invoke-KomorebiReload -Attempts 10 -DelaySeconds 2) -or $hadFailure
+
+    if (-not $hadFailure) {
+        $hadFailure = -not (Invoke-KomorebiWorkspaceSetup) -or $hadFailure
+    }
+
+    Write-Skip "YASB uses its own autostart"
+    Write-Skip "WezTerm and Zed watch their linked config files"
+
+    if ($hadFailure) {
+        exit 1
+    }
+
+    exit 0
+}
 
 if ($All -or $Komorebi) {
     $hadFailure = -not (Invoke-KomorebiReload) -or $hadFailure

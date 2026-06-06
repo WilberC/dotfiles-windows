@@ -95,7 +95,8 @@ The script will:
 - Pull the latest Zed config from `WilberC/dotfiles`
 - Apply your chosen theme to all config files
 - Symlink configs from the repo into the locations each app expects
-- Register a login task that starts Komorebi and whkd automatically
+- Register a login task that starts Komorebi and whkd, reloads Komorebi config,
+  and reapplies workspaces/rules automatically
 
 ### 4. Install Windhawk mods
 
@@ -126,11 +127,13 @@ Recommended values:
 
 ### 6. Log out and back in
 
-Komorebi starts automatically at login via the scheduled task. To start it
-manually right now:
+Komorebi starts automatically at login via the scheduled task. The task runs
+`.\reload-configs.ps1 -Startup`, which starts Komorebi/whkd, reloads
+`komorebi.json`, and reapplies named workspaces/rules. To start it manually
+right now:
 
 ```powershell
-komorebic start --whkd
+.\reload-configs.ps1 -Startup
 ```
 
 ## New Machine Setup
