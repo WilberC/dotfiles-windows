@@ -64,7 +64,7 @@ $lua = $lua -replace 'win32_system_backdrop\s*=\s*"[^"]*"',    "win32_system_bac
 # Patch WSL default shell - matches both the comment (first run) and the live line (re-runs)
 if ($uc['WEZTERM_DEFAULT_SHELL'] -eq "wsl") {
     $distro = $uc['WSL_DISTRO']
-    $lua = $lua -replace '(?:-- )?config\.default_prog\s*=.*', "config.default_prog = { `"wsl.exe`", `"--distribution`", `"$distro`" }"
+    $lua = $lua -replace '(?:-- )?config\.default_prog\s*=.*', "config.default_prog = { `"wsl.exe`", `"--distribution`", `"$distro`", `"--cd`", `"~`" }"
 }
 
 Set-Content $weztermLua $lua -NoNewline

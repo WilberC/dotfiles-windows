@@ -247,7 +247,7 @@ Write-Step "Registering komorebi login task"
 $reloadConfigsPath = "$DotfilesPath\reload-configs.ps1"
 $action    = New-ScheduledTaskAction `
     -Execute "powershell.exe" `
-    -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$reloadConfigsPath`" -Startup"
+    -Argument "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$reloadConfigsPath`" -Startup"
 $trigger   = New-ScheduledTaskTrigger -AtLogOn
 $settings  = New-ScheduledTaskSettingsSet -ExecutionTimeLimit 0
 $principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -RunLevel Highest

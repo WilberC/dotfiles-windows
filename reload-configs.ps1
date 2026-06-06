@@ -60,6 +60,44 @@ function Invoke-KomorebiReload {
     return $false
 }
 
+function Invoke-KomorebiStart {
+    param(
+        [int]$Attempts = 1,
+        [int]$DelaySeconds = 1
+    )
+
+    Write-Step "Starting Komorebi and whkd"
+
+    if (-not (Test-Command "komorebic")) {
+        Write-Bad "komorebic was not found on PATH"
+        return $false
+    }
+
+    $komorebiConfig = Join-Path $HOME ".config\komorebi\komorebi.json"
+
+    if (-not (Test-Path -LiteralPath $komorebiConfig)) {
+        Write-Bad "komorebi.json was not found at $komorebiConfig"
+        return $false
+    }
+
+    for ($attempt = 1; $attempt -le $Attempts; $attempt++) {
+        & komorebic start --config $komorebiConfig --clean-state --whkd
+
+        if ($LASTEXITCODE -eq 0) {
+            Write-Ok "Komorebi and whkd started"
+            return $true
+        }
+
+        if ($attempt -lt $Attempts) {
+            Write-Warn "Komorebi start attempt $attempt failed; retrying in $DelaySeconds seconds"
+            Start-Sleep -Seconds $DelaySeconds
+        }
+    }
+
+    Write-Bad "komorebic start --whkd failed with exit code $LASTEXITCODE"
+    return $false
+}
+
 function Invoke-WhkdRestart {
     Write-Step "Restarting whkd through Komorebi"
 
@@ -75,7 +113,13 @@ function Invoke-WhkdRestart {
         return $false
     }
 
-    & komorebic stop --whkd
+    & komorebic stop --whkd 2>$null
+    $stopExitCode = $LASTEXITCODE
+
+    if ($stopExitCode -ne 0) {
+        Write-Warn "Komorebi was not already running; starting it now"
+    }
+
     & komorebic start --config $komorebiConfig --clean-state --whkd
 
     if ($LASTEXITCODE -eq 0) {
@@ -190,7 +234,7 @@ if ($Startup) {
     Write-Step "Waiting for login startup"
     Start-Sleep -Seconds 5
 
-    $hadFailure = -not (Invoke-WhkdRestart) -or $hadFailure
+    $hadFailure = -not (Invoke-KomorebiStart -Attempts 10 -DelaySeconds 2) -or $hadFailure
     $hadFailure = -not (Invoke-KomorebiReload -Attempts 10 -DelaySeconds 2) -or $hadFailure
 
     if (-not $hadFailure) {

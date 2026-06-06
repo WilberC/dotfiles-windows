@@ -32,6 +32,12 @@ config.scrollback_lines = 10000
 -- Keybindings
 local act = wezterm.action
 config.keys = {
+  -- Ghostty/macOS-style splits, adapted for Windows to avoid the Super key.
+  { key = "d",   mods = "CTRL",       action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+  { key = "d",   mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+  { key = "w",   mods = "CTRL",       action = act.CloseCurrentPane({ confirm = false }) },
+  { key = "t",   mods = "CTRL",       action = act.SpawnTab("CurrentPaneDomain") },
+
   { key = "t",   mods = "CTRL|SHIFT", action = act.SpawnTab("CurrentPaneDomain") },
   { key = "w",   mods = "CTRL|SHIFT", action = act.CloseCurrentTab({ confirm = false }) },
   { key = "Tab", mods = "CTRL",       action = act.ActivateTabRelative(1) },
@@ -48,6 +54,6 @@ config.keys = {
 }
 
 -- Default shell (patched by apply-theme.ps1 when WEZTERM_DEFAULT_SHELL=wsl)
-config.default_prog = { "wsl.exe", "--distribution", "Ubuntu" }
+config.default_prog = { "wsl.exe", "--distribution", "Ubuntu", "--cd", "~" }
 
 return config

@@ -21,6 +21,10 @@
 	"transparency": false,
 	"transparency_alpha": 200,
 	"float_rule_placement": "None",
+	"ignore_rules": [
+		{ "kind": "Exe", "id": "brave.exe", "matching_strategy": "Equals" },
+		{ "kind": "Exe", "id": "Brave.exe", "matching_strategy": "Equals" }
+	],
 	"floating_applications": [
 		{ "kind": "Exe", "id": "SnippingTool.exe", "matching_strategy": "Equals" },
 		{
