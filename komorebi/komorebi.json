@@ -116,9 +116,28 @@
 						{ "kind": "Exe", "id": "zen.exe", "matching_strategy": "Equals" },
 						{ "kind": "Exe", "id": "Zen.exe", "matching_strategy": "Equals" },
 						{
-							"kind": "Class",
-							"id": "MozillaWindowClass",
+							"kind": "Path",
+							"id": "C:\\Program Files\\Zen Browser\\zen.exe",
 							"matching_strategy": "Equals"
+						},
+						{
+							"kind": "Title",
+							"id": "Zen Browser",
+							"matching_strategy": "Contains"
+						}
+					],
+					"workspace_rules": [
+						{ "kind": "Exe", "id": "zen.exe", "matching_strategy": "Equals" },
+						{ "kind": "Exe", "id": "Zen.exe", "matching_strategy": "Equals" },
+						{
+							"kind": "Path",
+							"id": "C:\\Program Files\\Zen Browser\\zen.exe",
+							"matching_strategy": "Equals"
+						},
+						{
+							"kind": "Title",
+							"id": "Zen Browser",
+							"matching_strategy": "Contains"
 						}
 					]
 				},

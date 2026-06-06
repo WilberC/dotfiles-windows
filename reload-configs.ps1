@@ -126,7 +126,12 @@ function Invoke-KomorebiWorkspaceSetup {
     & komorebic initial-named-workspace-rule title "League of Legends" game
     & komorebic initial-named-workspace-rule exe zen.exe zen
     & komorebic initial-named-workspace-rule exe Zen.exe zen
-    & komorebic initial-named-workspace-rule class MozillaWindowClass zen
+    & komorebic initial-named-workspace-rule path "C:\Program Files\Zen Browser\zen.exe" zen
+    & komorebic initial-named-workspace-rule title "Zen Browser" zen
+    & komorebic named-workspace-rule exe zen.exe zen
+    & komorebic named-workspace-rule exe Zen.exe zen
+    & komorebic named-workspace-rule path "C:\Program Files\Zen Browser\zen.exe" zen
+    & komorebic named-workspace-rule title "Zen Browser" zen
     & komorebic initial-named-workspace-rule exe wezterm-gui.exe terminals
     & komorebic initial-named-workspace-rule exe WezTerm.exe terminals
     & komorebic initial-named-workspace-rule exe wezterm.exe terminals
@@ -137,6 +142,12 @@ function Invoke-KomorebiWorkspaceSetup {
     & komorebic initial-named-workspace-rule exe Chromium.exe "dev browsers"
     & komorebic initial-named-workspace-rule exe chrome.exe "dev browsers"
     & komorebic initial-named-workspace-rule title Chromium "dev browsers"
+
+    for ($attempt = 1; $attempt -le 5; $attempt++) {
+        Start-Sleep -Seconds 2
+        & komorebic enforce-workspace-rules
+    }
+
     & komorebic focus-monitor-workspace 1 0
     & komorebic focus-monitor-workspace 0 3
 
