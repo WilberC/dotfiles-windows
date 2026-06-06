@@ -3,6 +3,8 @@
 	"default_layout": "BSP",
 	"window_container_behaviour": "Create",
 	"cross_monitor_move_behaviour": "Insert",
+	"default_workspace_padding": 0,
+	"default_container_padding": 0,
 	"display_index_preferences": {
 		"0": "DISPLAY1",
 		"1": "DISPLAY2"
@@ -61,7 +63,7 @@
 		}
 	],
 	"work_area_offset": {
-		"top": 40,
+		"top": 0,
 		"bottom": 0,
 		"left": 0,
 		"right": 0
@@ -118,7 +120,11 @@
 					"name": "terminals",
 					"layout": "BSP",
 					"initial_workspace_rules": [
-						{ "kind": "Exe", "id": "wezterm-gui.exe", "matching_strategy": "Equals" }
+						{
+							"kind": "Exe",
+							"id": "wezterm-gui.exe",
+							"matching_strategy": "Equals"
+						}
 					]
 				},
 				{
@@ -132,15 +138,17 @@
 					"name": "dev browsers",
 					"layout": "Columns",
 					"initial_workspace_rules": [
-						{ "kind": "Exe", "id": "chromium.exe", "matching_strategy": "Equals" }
+						{
+							"kind": "Exe",
+							"id": "chromium.exe",
+							"matching_strategy": "Equals"
+						}
 					]
 				}
 			]
 		},
 		{
-			"workspaces": [
-				{ "name": "alt", "layout": "BSP", "float_override": true }
-			]
+			"workspaces": [{ "name": "alt", "layout": "BSP", "float_override": true }]
 		}
 	]
 }
