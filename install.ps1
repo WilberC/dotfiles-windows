@@ -230,10 +230,24 @@ foreach ($target in $links.Keys) {
     Add-Summary $target "OK" "Created link"
 }
 
-# 8. Register komorebi login task
-Write-Step "Registering komorebi login task"
+# 8. Fetch Komorebi application-specific configuration
+Write-Step "Fetching Komorebi application-specific configuration"
 $komorebicPath = (Get-Command komorebic -ErrorAction Stop).Source
-$action    = New-ScheduledTaskAction -Execute $komorebicPath -Argument "start --whkd"
+& $komorebicPath fetch-app-specific-configuration
+if ($LASTEXITCODE -ne 0) {
+    Write-Warn "Komorebi ASC fetch reported an issue. Try manually: komorebic fetch-app-specific-configuration"
+    Add-Summary "Komorebi ASC" "WARN" "fetch-app-specific-configuration reported an issue"
+} else {
+    Write-Ok "Komorebi ASC fetched"
+    Add-Summary "Komorebi ASC" "OK" "Fetched applications.json"
+}
+
+# 9. Register komorebi login task
+Write-Step "Registering komorebi login task"
+$reloadConfigsPath = "$DotfilesPath\reload-configs.ps1"
+$action    = New-ScheduledTaskAction `
+    -Execute "powershell.exe" `
+    -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$reloadConfigsPath`" -Whkd"
 $trigger   = New-ScheduledTaskTrigger -AtLogOn
 $settings  = New-ScheduledTaskSettingsSet -ExecutionTimeLimit 0
 $principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -RunLevel Highest
@@ -242,7 +256,7 @@ Register-ScheduledTask -TaskName "komorebi-startup" `
 Write-Ok "komorebi-startup task registered (elevated, runs at login)"
 Add-Summary "Komorebi login task" "OK" "Registered elevated startup task"
 
-# 9. Enable YASB autostart
+# 10. Enable YASB autostart
 Write-Step "Enabling YASB autostart"
 $yasbcPath = (Get-Command yasbc -ErrorAction Stop).Source
 & $yasbcPath enable-autostart
@@ -254,7 +268,7 @@ if ($LASTEXITCODE -ne 0) {
     Add-Summary "YASB autostart" "OK" "Enabled with yasbc"
 }
 
-# 10. Enable Flow Launcher autostart
+# 11. Enable Flow Launcher autostart
 Write-Step "Flow Launcher autostart"
 if ($installFlowLauncher) {
     $flowLauncherPath = Resolve-FlowLauncherPath
@@ -266,7 +280,7 @@ if ($installFlowLauncher) {
     Add-Summary "Flow Launcher autostart" "SKIP" "Disabled in user.conf"
 }
 
-# 11. Windhawk manual steps
+# 12. Windhawk manual steps
 if ($installWH) {
     Write-Step "Windhawk - manual steps required"
     Write-Info "Windhawk mods must be installed from inside the app."

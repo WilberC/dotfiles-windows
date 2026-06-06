@@ -55,8 +55,15 @@ function Invoke-WhkdRestart {
         return $false
     }
 
+    $komorebiConfig = Join-Path $HOME ".config\komorebi\komorebi.json"
+
+    if (-not (Test-Path -LiteralPath $komorebiConfig)) {
+        Write-Bad "komorebi.json was not found at $komorebiConfig"
+        return $false
+    }
+
     & komorebic stop --whkd
-    & komorebic start --whkd
+    & komorebic start --config $komorebiConfig --clean-state --whkd
 
     if ($LASTEXITCODE -eq 0) {
         Write-Ok "whkd restarted"
@@ -64,6 +71,62 @@ function Invoke-WhkdRestart {
     }
 
     Write-Bad "komorebic start --whkd failed with exit code $LASTEXITCODE"
+    return $false
+}
+
+function Invoke-KomorebiWorkspaceSetup {
+    Write-Step "Applying Komorebi workspace setup"
+
+    if (-not (Test-Command "komorebic")) {
+        Write-Bad "komorebic was not found on PATH"
+        return $false
+    }
+
+    & komorebic ensure-named-workspaces 0 game zen terminals zed "dev browsers"
+    & komorebic ensure-named-workspaces 1 alt
+
+    & komorebic named-workspace-layout game bsp
+    & komorebic named-workspace-layout zen bsp
+    & komorebic named-workspace-layout terminals bsp
+    & komorebic named-workspace-layout zed bsp
+    & komorebic named-workspace-layout "dev browsers" columns
+    & komorebic named-workspace-layout alt bsp
+
+    & komorebic named-workspace-tiling game disable
+    & komorebic named-workspace-tiling zen enable
+    & komorebic named-workspace-tiling terminals enable
+    & komorebic named-workspace-tiling zed enable
+    & komorebic named-workspace-tiling "dev browsers" enable
+    & komorebic named-workspace-tiling alt disable
+
+    $workspaceNames = @("game", "zen", "terminals", "zed", "dev browsers", "alt")
+    foreach ($workspaceName in $workspaceNames) {
+        & komorebic clear-named-workspace-rules $workspaceName
+    }
+
+    & komorebic initial-named-workspace-rule exe steam.exe game
+    & komorebic initial-named-workspace-rule exe RiotClientServices.exe game
+    & komorebic initial-named-workspace-rule exe "Riot Client.exe" game
+    & komorebic initial-named-workspace-rule exe LeagueClient.exe game
+    & komorebic initial-named-workspace-rule exe LeagueClientUx.exe game
+    & komorebic initial-named-workspace-rule exe "League of Legends.exe" game
+    & komorebic initial-named-workspace-rule title "League of Legends" game
+    & komorebic initial-named-workspace-rule exe zen.exe zen
+    & komorebic initial-named-workspace-rule exe Zen.exe zen
+    & komorebic initial-named-workspace-rule exe wezterm-gui.exe terminals
+    & komorebic initial-named-workspace-rule exe WezTerm.exe terminals
+    & komorebic initial-named-workspace-rule exe wezterm.exe terminals
+    & komorebic initial-named-workspace-rule exe zed.exe zed
+    & komorebic initial-named-workspace-rule exe Zed.exe zed
+    & komorebic initial-named-workspace-rule exe chromium.exe "dev browsers"
+    & komorebic initial-named-workspace-rule exe Chromium.exe "dev browsers"
+
+    if ($LASTEXITCODE -eq 0) {
+        Write-Ok "Named workspaces and routing rules applied"
+        return $true
+    }
+
+    Write-Bad "Komorebi workspace setup failed with exit code $LASTEXITCODE"
     return $false
 }
 
@@ -107,6 +170,10 @@ if ($All -or $Yasb) {
     $hadFailure = -not (Invoke-YasbRestart) -or $hadFailure
 } else {
     Write-Skip "YASB config and styles are watched"
+}
+
+if (-not $hadFailure -and ($All -or $Komorebi -or $Whkd)) {
+    $hadFailure = -not (Invoke-KomorebiWorkspaceSetup) -or $hadFailure
 }
 
 Write-Skip "WezTerm and Zed watch their linked config files"
