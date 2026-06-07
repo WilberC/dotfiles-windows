@@ -58,6 +58,7 @@ config link.
 | [Installation](docs/installation.md) | Prerequisites, first-time setup, and new machine setup |
 | [Keybindings](docs/keybindings.md) | Komorebi and whkd shortcuts |
 | [Daily workflow](docs/daily-workflow.md) | Editing configs, switching themes, updating Zed, and backups |
+| [WezTerm workspaces](docs/wezterm-workspaces.md) | Windows/WSL2 project tabs and panes, `gtab`-style |
 | [Repository map](docs/repository-map.md) | File layout and symlink targets |
 | [Manual steps](docs/manual-steps.md) | Things the script cannot automate |
 

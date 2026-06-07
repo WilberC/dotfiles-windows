@@ -181,6 +181,7 @@ $links = [ordered]@{
     "$HOME\.config\komorebi" = "$DotfilesPath\komorebi"
     "$HOME\.config\yasb"     = "$DotfilesPath\yasb"
     "$HOME\.config\whkdrc"   = "$DotfilesPath\komorebi\whkdrc"
+    "$HOME\.config\wezterm"  = "$DotfilesPath\wezterm"
     "$HOME\.wezterm.lua"     = "$DotfilesPath\wezterm\.wezterm.lua"
     "$env:APPDATA\Zed"       = "$DotfilesPath\zed"
 }

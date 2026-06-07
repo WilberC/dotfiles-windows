@@ -10,6 +10,7 @@ repo the source of truth, so editing a file here changes it for the running app.
 | `yasb/config.yaml` | Yes, via `watch_config: true` |
 | `yasb/styles.css` | Yes, via `watch_stylesheet: true` |
 | `wezterm/.wezterm.lua` | Yes, WezTerm watches it |
+| `wezterm/workspace-defs.lua` | Yes, through the watched WezTerm config |
 | `zed/*.json` | Yes, pulled from `WilberC/dotfiles`, then watched by Zed |
 | `komorebi/komorebi.json` | No, run `.\reload-configs.ps1` |
 | `komorebi/whkdrc` | Yes, whkd restarts on change |
@@ -27,6 +28,29 @@ If a watched app needs a hard refresh anyway:
 .\reload-configs.ps1 -Yasb
 .\reload-configs.ps1 -All
 ```
+
+## Opening WezTerm Project Workspaces
+
+Named project layouts live in `wezterm/workspace-defs.lua`. Each tab and pane
+launches through Windows WezTerm into WSL2 with `wsl.exe -d Ubuntu --cd ...`.
+Use `/mnt/c/...` paths for repos that live on the Windows filesystem.
+
+Normal WezTerm startup stays as a fresh WSL terminal at `~`. Project layouts
+and any future save/restore flow are manual only.
+
+Inside WezTerm, press:
+
+```text
+Ctrl+Shift+O
+```
+
+To open one from PowerShell:
+
+```powershell
+wezterm start --always-new-process -- dotfiles-windows
+```
+
+See [WezTerm workspaces](wezterm-workspaces.md) for the workspace schema.
 
 ## Switching Themes
 

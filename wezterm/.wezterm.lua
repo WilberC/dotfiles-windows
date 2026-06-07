@@ -1,12 +1,22 @@
 -- dotfiles-windows/wezterm/.wezterm.lua
 -- Values marked "(patched)" are overwritten by themes/apply-theme.ps1
 local wezterm = require("wezterm")
+local config_dir = wezterm.config_dir
+local default_repo_dir = wezterm.home_dir .. "\\dotfiles-windows\\wezterm"
+
+package.path = config_dir .. "\\?.lua;" .. config_dir .. "/?.lua;" .. package.path
+package.path = default_repo_dir .. "\\?.lua;" .. default_repo_dir .. "/?.lua;" .. package.path
+wezterm.add_to_config_reload_watch_list(config_dir .. "\\workspace-defs.lua")
+wezterm.add_to_config_reload_watch_list(config_dir .. "\\workspaces.lua")
+wezterm.add_to_config_reload_watch_list(default_repo_dir .. "\\workspace-defs.lua")
+wezterm.add_to_config_reload_watch_list(default_repo_dir .. "\\workspaces.lua")
+
 local mux     = wezterm.mux
 local config  = wezterm.config_builder()
+local workspaces = require("workspaces")
 
 wezterm.on("gui-startup", function(cmd)
-  local _, _, window = mux.spawn_window(cmd or {})
-  window:gui_window():maximize()
+  workspaces.gui_startup(wezterm, mux, cmd)
 end)
 
 -- Appearance (patched by apply-theme.ps1)
@@ -41,6 +51,7 @@ config.scrollback_lines = 10000
 
 -- Keybindings
 local act = wezterm.action
+local workspace_selector = workspaces.selector(wezterm)
 local copy_or_interrupt = wezterm.action_callback(function(window, pane)
   if window:get_selection_text_for_pane(pane) ~= "" then
     window:perform_action(act.CopyTo("Clipboard"), pane)
@@ -66,6 +77,7 @@ local show_shortcuts = wezterm.action_callback(function(window, pane)
       { id = "close_tab",   label = "Ctrl+Shift+W  Close current tab" },
       { id = "next_tab",    label = "Ctrl+Tab      Next tab" },
       { id = "prev_tab",    label = "Ctrl+Shift+Tab Previous tab" },
+      { id = "workspace",   label = "Ctrl+Shift+O  Open project workspace" },
       { id = "search",      label = "Ctrl+F        Search scrollback" },
       { id = "section_other", label = "-- Other shortcuts --" },
       { id = "all_actions", label = "Open full WezTerm action list" },
@@ -83,6 +95,7 @@ local show_shortcuts = wezterm.action_callback(function(window, pane)
         close_tab   = act.CloseCurrentTab({ confirm = false }),
         next_tab    = act.ActivateTabRelative(1),
         prev_tab    = act.ActivateTabRelative(-1),
+        workspace   = workspace_selector,
         search      = act.Search("CurrentSelectionOrEmptyString"),
         all_actions = act.ShowLauncherArgs({ flags = "FUZZY|KEY_ASSIGNMENTS" }),
       }
@@ -95,6 +108,7 @@ local show_shortcuts = wezterm.action_callback(function(window, pane)
 end)
 
 config.keys = {
+  { key = "o",   mods = "CTRL|SHIFT", action = workspace_selector },
   { key = "p",   mods = "CTRL|SHIFT", action = show_shortcuts },
   { key = "c",   mods = "CTRL",       action = copy_or_interrupt },
   { key = "f",   mods = "CTRL",       action = act.Search("CurrentSelectionOrEmptyString") },

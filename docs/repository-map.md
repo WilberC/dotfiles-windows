@@ -12,7 +12,8 @@ dotfiles-windows/
 |   |-- keybindings.md
 |   |-- manual-steps.md
 |   |-- overview.md
-|   `-- repository-map.md
+|   |-- repository-map.md
+|   `-- wezterm-workspaces.md
 |-- user.conf.example
 |-- user.conf
 |-- packages.json
@@ -31,7 +32,10 @@ dotfiles-windows/
 |   |-- config.yaml
 |   `-- styles.css
 |-- wezterm/
-|   `-- .wezterm.lua
+|   |-- .wezterm.lua
+|   |-- wezterm.lua
+|   |-- workspace-defs.lua
+|   `-- workspaces.lua
 |-- zed/
 |   |-- keymap.json
 |   |-- settings.json
@@ -64,6 +68,9 @@ dotfiles-windows/
 | `yasb/config.yaml` | Workspaces, layout, clock, CPU, memory, volume, battery, network, power menu |
 | `yasb/styles.css` | Bar theme patched by `apply-theme.ps1` |
 | `wezterm/.wezterm.lua` | Acrylic blur, font, tab bar, pane keybinds |
+| `wezterm/wezterm.lua` | Directory-style WezTerm entrypoint for `$HOME\.config\wezterm` |
+| `wezterm/workspace-defs.lua` | Named Windows/WSL2 WezTerm project workspaces |
+| `wezterm/workspaces.lua` | Lua launcher for workspace tabs, splits, cwd, titles, and commands |
 | `zed/*.json` | Zed config pulled from `WilberC/dotfiles` |
 | `windhawk/*.yaml` | Manual Windhawk mod settings |
 | `flow-launcher/` | Drop Flow Launcher backups here |
@@ -74,6 +81,7 @@ dotfiles-windows/
 $HOME\.config\komorebi  ->  dotfiles-windows\komorebi\
 $HOME\.config\yasb      ->  dotfiles-windows\yasb\
 $HOME\.config\whkdrc    ->  dotfiles-windows\komorebi\whkdrc
+$HOME\.config\wezterm   ->  dotfiles-windows\wezterm\
 $HOME\.wezterm.lua      ->  dotfiles-windows\wezterm\.wezterm.lua
 $env:APPDATA\Zed        ->  dotfiles-windows\zed\
 ```
