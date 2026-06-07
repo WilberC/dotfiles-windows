@@ -27,7 +27,7 @@
 	},
 	"auto_signature_help": false,
 	"autosave": "on_focus_change",
-	"buffer_font_family": "Berkeley Mono",
+	"buffer_font_family": "BerkeleyMono Nerd Font",
 	"buffer_font_size": 19,
 	"buffer_line_height": "comfortable",
 	"code_actions_on_format": {
@@ -187,7 +187,7 @@
 		"env": {
 			"GIT_EDITOR": "zed --wait"
 		},
-		"font_family": "MonaspiceNe Nerd Font Mono",
+		"font_family": "BerkeleyMono Nerd Font",
 		"line_height": "standard",
 		"working_directory": "current_project_directory"
 	},

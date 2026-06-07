@@ -12,7 +12,7 @@ WSL_DISTRO="Ubuntu"
 
 # ── WezTerm ──────────────────────────────────────────────────────────────────
 # Font must be a Nerd Font installed on the system — see README prerequisites
-WEZTERM_FONT="JetBrainsMono Nerd Font"
+WEZTERM_FONT="BerkeleyMono Nerd Font"
 WEZTERM_FONT_SIZE="13.0"
 WEZTERM_OPACITY="0.92"
 WEZTERM_BLUR="Acrylic"          # Acrylic | Tabbed | Mica | Disable

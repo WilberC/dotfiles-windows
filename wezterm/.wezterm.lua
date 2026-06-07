@@ -32,7 +32,7 @@ config.colors = {
 }
 
 -- Font (patched by apply-theme.ps1)
-config.font = wezterm.font("JetBrainsMono Nerd Font")
+config.font = wezterm.font("BerkeleyMono Nerd Font")
 config.font_size = 13.0
 
 -- Tab bar

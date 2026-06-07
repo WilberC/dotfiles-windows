@@ -6,8 +6,8 @@ Do these manually before running the bootstrap.
 
 ### 1. Install a Nerd Font
 
-YASB and the workspace indicators require a Nerd Font. Recommended:
-[JetBrains Mono Nerd Font](https://www.nerdfonts.com/font-downloads).
+YASB, WezTerm, Zed terminals, and the workspace indicators require a Nerd Font.
+Recommended: BerkeleyMono Nerd Font.
 
 Download, extract, right-click the `.ttf` files, then choose **Install for all
 users**.
