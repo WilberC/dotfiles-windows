@@ -118,6 +118,12 @@ config.keys = {
   { key = "f",   mods = "CTRL",       action = act.Search("CurrentSelectionOrEmptyString") },
   { key = "v",   mods = "CTRL",       action = act.PasteFrom("Clipboard") },
 
+  -- Keep these combinations available to Herdr in WSL. Ctrl+Shift+U is a
+  -- WezTerm default (Unicode picker), so move the picker to Ctrl+Alt+U.
+  { key = "u",   mods = "CTRL|ALT",   action = act.CharSelect {} },
+  { key = "u",   mods = "CTRL|SHIFT", action = act.SendKey({ key = "u", mods = "CTRL|SHIFT" }) },
+  { key = "m",   mods = "CTRL|SHIFT", action = act.SendKey({ key = "m", mods = "CTRL|SHIFT" }) },
+
   -- Ghostty/macOS-style splits, adapted for Windows to avoid the Super key.
   { key = "d",   mods = "CTRL",       action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
   { key = "d",   mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
