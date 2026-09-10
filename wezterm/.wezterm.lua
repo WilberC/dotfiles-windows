@@ -35,6 +35,10 @@ config.colors = {
 config.font = wezterm.font("BerkeleyMono Nerd Font")
 config.font_size = 13.0
 
+-- Allow smooth rendering on high-refresh-rate displays.
+-- WezTerm still follows the display/compositor refresh rate.
+config.max_fps = 240
+
 -- Tab bar
 config.enable_tab_bar               = true
 config.hide_tab_bar_if_only_one_tab = true
